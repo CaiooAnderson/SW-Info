@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmesService } from '../services/filmes.service';
+import { Filme, RespostaAPI } from '../services/filmes.interface';
 
 @Component({
   selector: 'app-filmes',
@@ -8,14 +9,14 @@ import { FilmesService } from '../services/filmes.service';
 })
 export class FilmesComponent implements OnInit {
   displayedColumns: string[] = ['title', 'release_date', 'director'];
-  filmes: any[] = [];
+  filmes: Filme[] = [];
 
   constructor(private filmesService: FilmesService) {}
 
   ngOnInit(): void {
     this.filmesService.getFilmes().subscribe({
-      next: (data: any[]) => {
-        this.filmes = data;
+      next: (data) => {
+        this.filmes = data.results;
         console.log(this.filmes);
       },
       error: (err) => {

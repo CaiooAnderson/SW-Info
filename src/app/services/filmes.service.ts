@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Filme, RespostaAPI } from './filmes.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilmesService {
-  private filmesUrl = 'assets/filmes.json';
+  private apiUrl = 'https://swapi.py4e.com/api/films';
 
   constructor(private http: HttpClient) {}
 
-  getFilmes(): Observable<any[]> {
-    return this.http.get<any>(this.filmesUrl).pipe(
-      map((response) => response.results)
-    );
+  getFilmes(): Observable<RespostaAPI<Filme>> {
+    return this.http.get<RespostaAPI<Filme>>(this.apiUrl);
   }
 }
