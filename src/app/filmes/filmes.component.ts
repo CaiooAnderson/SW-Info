@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmesService } from '../services/filmes.service';
-import { Filme, RespostaAPI } from '../services/filmes.interface';
+import { Filme } from '../services/filmes.interface';
 
 @Component({
   selector: 'app-filmes',
@@ -10,18 +10,30 @@ import { Filme, RespostaAPI } from '../services/filmes.interface';
 export class FilmesComponent implements OnInit {
   displayedColumns: string[] = ['title', 'release_date', 'director'];
   filmes: Filme[] = [];
+  isLoading = false;
+  searchTitle = '';
 
   constructor(private filmesService: FilmesService) {}
 
   ngOnInit(): void {
-    this.filmesService.getFilmes().subscribe({
+      this.loadFilmes();
+  }
+
+  loadFilmes(search?: string): void {
+    this.isLoading = true;
+    this.filmesService.getFilmes(search).subscribe({
       next: (data) => {
         this.filmes = data.results;
-        console.log(this.filmes);
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Erro ao carregar os filmes:', err);
+        this.isLoading = false;
       },
     });
+  }
+
+  onSearch(): void {
+    this.loadFilmes(this.searchTitle.trim());
   }
 }

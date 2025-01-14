@@ -11,7 +11,8 @@ export class FilmesService {
 
   constructor(private http: HttpClient) {}
 
-  getFilmes(): Observable<RespostaAPI<Filme>> {
-    return this.http.get<RespostaAPI<Filme>>(this.apiUrl);
+  getFilmes(search?: string): Observable<RespostaAPI<Filme>> {
+    const url = search ? `${this.apiUrl}?search=${search}` : this.apiUrl;
+    return this.http.get<RespostaAPI<Filme>>(url);
   }
 }

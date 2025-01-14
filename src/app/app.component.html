@@ -458,10 +458,10 @@
 </div>
 -->
 
-<nav>
-  <a routerLink="/" routerLinkActive="active">Início</a>
-  <a routerLink="/filmes" routerLinkActive="active">Filmes</a>
-  <a routerLink="/naves" routerLinkActive="active">Naves</a>
+<nav class="navbar">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Início</a>
+  <a routerLink="/filmes" routerLinkActive="active" class="nav-link">Filmes</a>
+  <a routerLink="/naves" routerLinkActive="active" class="nav-link">Naves</a>
 </nav>
 
 <router-outlet></router-outlet>
