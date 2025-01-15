@@ -45,9 +45,39 @@
     }
   }
   
-  .loading {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-    margin: 20px 0;
-  }
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin: 20px 0;
+}
+
+table.mat-elevation-z8 {
+  width: 100%;
+  cursor: default;
+}
+
+th {
+  cursor: default; 
+}
+
+td {
+  padding: 12px 15px;
+  text-align: left;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+tr:hover td {
+  background-color: #007bff; 
+  color: white;
+}
+
+th:hover {
+  background-color: transparent;
+}
+
+td:hover {
+  background-color: #007bff;
+  color: white;
+}

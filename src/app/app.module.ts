@@ -13,6 +13,7 @@ import { FilmesComponent } from './filmes/filmes.component';
 import { NavesComponent } from './naves/naves.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
+import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HeaderComponent } from './components/header/header.component';
     FilmesComponent,
     NavesComponent,
     HeaderComponent,
+    FilmeDetalheComponent,
   ],
   imports: [
     MatTableModule,

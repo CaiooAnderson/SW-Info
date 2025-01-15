@@ -1,0 +1,9 @@
+<div *ngIf="filme">
+    <h2>{{ filme.title }}</h2>
+    <p><strong>Diretor:</strong> {{ filme.director }}</p>
+    <p><strong>Data de Lançamento:</strong> {{ filme.release_date }}</p>
+    <p><strong>Descrição:</strong> {{ filme.opening_crawl }}</p>
+  </div>
+  <div *ngIf="!filme">
+    <p>Carregando...</p>
+  </div>
