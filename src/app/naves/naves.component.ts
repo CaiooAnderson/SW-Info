@@ -24,14 +24,14 @@ export class NavesComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator; // Atribui o paginator ao dataSource
+    this.dataSource.paginator = this.paginator;
   }
 
   carregarNaves(): void {
     this.isLoading = true;
     this.navesService.getNaves().subscribe({
       next: (response) => {
-        this.dataSource.data = response.results; // Atualiza a dataSource com as naves recebidas
+        this.dataSource.data = response.results;
         this.isLoading = false;
       },
       error: (err) => {
@@ -43,10 +43,9 @@ export class NavesComponent implements OnInit {
 
   onSearch(): void {
     const searchTermLower = this.searchTerm.trim().toLowerCase();
-    this.dataSource.filter = searchTermLower; // Aplica o filtro diretamente no dataSource
-
+    this.dataSource.filter = searchTermLower; 
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage(); // Reseta para a primeira página após a busca
+      this.dataSource.paginator.firstPage(); 
     }
   }
 }
