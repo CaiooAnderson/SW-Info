@@ -7,7 +7,7 @@ import { Filme, RespostaAPI } from './filmes.interface';
   providedIn: 'root',
 })
 export class FilmesService {
-  private apiUrl = 'https://swapi.py4e.com/api/films';
+  private apiUrl = 'https://swapi.dev/api/films';
 
   constructor(private http: HttpClient) {}
 

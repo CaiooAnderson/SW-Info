@@ -34,4 +34,11 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<mat-paginator [pageSizeOptions]="[5, 4, 3]" color="accent" showFirstLastButtons aria-label="Selecione a página"></mat-paginator>
+<mat-paginator 
+  [length]="totalDeNaves" 
+  pageSize="pageSize" 
+  [pageSizeOptions]="pageSizeOptions" 
+  (page)="onPageChange($event)" 
+  color="accent" 
+  showFirstLastButtons aria-label="Selecione a página">
+</mat-paginator>
