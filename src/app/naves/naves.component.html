@@ -36,7 +36,7 @@
 
 <mat-paginator 
   [length]="totalDeNaves" 
-  pageSize="pageSize" 
+  [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions" 
   (page)="onPageChange($event)" 
   color="accent" 

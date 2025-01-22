@@ -1,24 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Nave, RespostaAPI } from './naves.interface';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Nave } from './naves.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavesService {
-  private apiUrl = 'https://swapi.dev/api/starships';
+  private apiUrl = 'https://swapi.dev/api/starships/';
 
   constructor(private http: HttpClient) {}
 
   /**
-   * Obtém as naves da API com suporte a paginação e busca.
-   * @param page Número da página (opcional, padrão: 1)
-   * @param search Termo de busca (opcional)
-   * @returns Observable contendo os dados da resposta da API.
+   * @returns
    */
-  getNaves(page: number = 1, pageSize: number = 5): Observable<RespostaAPI<Nave>> {
-    const url = `${this.apiUrl}/?page=${page}&pageSize=${pageSize}`;
-    return this.http.get<RespostaAPI<Nave>>(url);
+  getTodasNaves(): Observable<Nave[]> {
+    let allNaves: Nave[] = [];
+
+    const fetchPage = (url: string): Observable<any> => {
+      return this.http.get<any>(url).pipe(
+        switchMap(response => {
+          allNaves = [...allNaves, ...response.results];
+          return response.next ? fetchPage(response.next) : of(allNaves);
+        })
+      );
+    };
+
+    return fetchPage(this.apiUrl);
   }
 }

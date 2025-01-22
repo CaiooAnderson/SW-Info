@@ -13,38 +13,31 @@ export class NavesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'model', 'crew'];
   dataSource = new MatTableDataSource<Nave>();
   totalDeNaves = 0;
+  allNaves: Nave[] = [];
   searchTerm = '';
   isLoading = false;
 
   pageSize = 5;
   pageSizeOptions = [5, 4, 3];
-  currentPage = 1;
+  currentPage = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private navesService: NavesService) {}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-
   ngOnInit(): void {
-    this.carregarNaves(this.currentPage, this.pageSize);
+    this.pageSize = 5;
+    this.carregarTodasNaves();
   }
 
-  carregarNaves(page: number, pageSize: number): void {
+  carregarTodasNaves(): void {
     this.isLoading = true;
-    this.navesService.getNaves(page, pageSize).subscribe({
+    this.navesService.getTodasNaves().subscribe({
       next: (response) => {
-        this.dataSource.data = response.results;
-        this.totalDeNaves = response.count;
+        this.allNaves = response;
+        this.totalDeNaves = this.allNaves.length;
+        this.atualizarTabela();
         this.isLoading = false;
-
-        if (this.paginator) {
-          this.paginator.length = this.totalDeNaves;
-          this.paginator.pageIndex = page - 1;
-          this.paginator.pageSize = pageSize;          
-        }
       },
       error: (err) => {
         console.error('Erro ao carregar naves:', err);
@@ -53,10 +46,22 @@ export class NavesComponent implements OnInit {
     });
   }
 
+  atualizarTabela(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.dataSource.data = this.allNaves.slice(startIndex, endIndex);
+
+    if (this.paginator) {
+      this.paginator.length = this.totalDeNaves;
+      this.paginator.pageIndex = this.currentPage;
+      this.paginator.pageSize = this.pageSize;
+    }
+  }
+
   onPageChange(event: PageEvent): void {
     this.pageSize = event.pageSize;
-    this.currentPage = event.pageIndex + 1;
-    this.carregarNaves(this.currentPage, this.pageSize);
+    this.currentPage = event.pageIndex;
+    this.atualizarTabela();
   }
 
   onSearch(): void {
