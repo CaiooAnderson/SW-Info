@@ -1,4 +1,6 @@
 <div class="filme-detalhe-container" *ngIf="filme; else loading">
+  <button mat-raised-button color="warn" class="btn-voltar" (click)="voltarPagina()">Voltar</button>
+
   <div class="imagem-container" [ngStyle]="{ 'background-image': 'url(' + getBackgroundImage() + ')' }"></div>
   
   <div class="descricao-container" *ngIf="isDescriptionVisible" [@fadeIn]>
@@ -9,10 +11,11 @@
         <p class="descricao"><strong>Descrição:</strong> {{ filme.opening_crawl }}</p>
       </mat-card-content>
     </mat-card>
-    <button mat-raised-button color="accent" (click)="voltarPagina()">Voltar</button>
   </div>
 </div>
 
 <ng-template #loading>
-  <div class="loading">Carregando...</div>
+  <div class="loading">
+    <img src="../../assets/vader_loading.gif" alt="Carregando..." />
+  </div>
 </ng-template>

@@ -28,6 +28,10 @@ export class NavesComponent implements OnInit {
   ngOnInit(): void {
     this.pageSize = 5;
     this.carregarTodasNaves();
+
+    this.dataSource.filterPredicate = (data: Nave, filter: string) => {
+      return data.name.toLowerCase().includes(filter);
+    };
   }
 
   carregarTodasNaves(): void {
@@ -49,10 +53,17 @@ export class NavesComponent implements OnInit {
   atualizarTabela(): void {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.dataSource.data = this.allNaves.slice(startIndex, endIndex);
-
+  
+    const dataToDisplay = this.searchTerm
+      ? this.allNaves.filter(nave =>
+          nave.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase())
+        )
+      : this.allNaves;
+  
+    this.dataSource.data = dataToDisplay.slice(startIndex, endIndex);
+  
     if (this.paginator) {
-      this.paginator.length = this.totalDeNaves;
+      this.paginator.length = dataToDisplay.length;
       this.paginator.pageIndex = this.currentPage;
       this.paginator.pageSize = this.pageSize;
     }
@@ -65,10 +76,22 @@ export class NavesComponent implements OnInit {
   }
 
   onSearch(): void {
-    const searchTermLower = this.searchTerm.trim().toLowerCase();
-    this.dataSource.filter = searchTermLower; 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage(); 
-    }
+    this.isLoading = true;
+  
+    setTimeout(() => {
+      const searchTermLower = this.searchTerm.trim().toLowerCase();
+      
+      if (!searchTermLower) {
+        this.totalDeNaves = this.allNaves.length;
+      } else {
+        this.totalDeNaves = this.allNaves.filter(nave =>
+          nave.name.toLowerCase().includes(searchTermLower)
+        ).length;
+      }
+      
+      this.currentPage = 0;
+      this.atualizarTabela();
+      this.isLoading = false;
+    }, 500);
   }
 }

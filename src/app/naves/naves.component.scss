@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 44px 0 20px;
     gap: 10px;
   
     .search-input {
@@ -45,11 +45,17 @@
     }
   }
   
-  .loading {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-    margin: 20px 0;
+  .loading-naves {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(357deg, rgba(180,58,58,1) 0%, rgba(253,119,29,1) 50%, rgba(252,176,69,1) 100%);;
+    height: calc(100vh - 134px);
+  }
+  
+  .loading-naves img {
+    height: calc(90vh - 300px);
+    border-bottom-left-radius: 240px;
+    border-bottom-right-radius: 24px;
   }
 
   table {

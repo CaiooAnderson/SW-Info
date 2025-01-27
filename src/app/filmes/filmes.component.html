@@ -1,11 +1,13 @@
 <app-header title="Filmes"></app-header>
-<div class="search-container">
+<div class="search-container" *ngIf="!isLoading">
   <input type="text" [(ngModel)]="searchTitle" placeholder="Digite o título do filme" class="search-input"/>
   <button (click)="onSearch()" class="search-button">Buscar</button>
 </div>
 
 <div *ngIf="isLoading" class="loading">
-  <p>Carregando filmes...</p>
+  <div class="loading-filmes">
+    <img src="../../assets/r2d2_loading.gif" alt="Carregando Filmes..." />
+  </div>
 </div>
 
 <table mat-table [dataSource]="filmes" class="mat-elevation-z8" *ngIf="!isLoading">

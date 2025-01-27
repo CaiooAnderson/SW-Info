@@ -1,6 +1,6 @@
 <app-header title="Naves Estelares"></app-header>
 
-<div class="search-container">
+<div class="search-container" *ngIf="!isLoading">
   <input
     type="text"
     [(ngModel)]="searchTerm"
@@ -11,7 +11,9 @@
 </div>
 
 <div *ngIf="isLoading" class="loading">
-  <p>Carregando naves...</p>
+  <div class="loading-naves">
+    <img src="../../assets/naves_loading.gif" alt="Carregando Naves..." />
+  </div>
 </div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading">
@@ -34,7 +36,8 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<mat-paginator 
+<mat-paginator
+  *ngIf="!isLoading"
   [length]="totalDeNaves" 
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions" 
