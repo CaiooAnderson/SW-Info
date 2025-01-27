@@ -1,15 +1,16 @@
-<div class="filme-detalhe" *ngIf="filme; else loading">
-  <div class="filme-banner">
-    <h2>{{ filme.title }}</h2>
+<div class="filme-detalhe-container" *ngIf="filme; else loading">
+  <div class="imagem-container" [ngStyle]="{ 'background-image': 'url(' + getBackgroundImage() + ')' }"></div>
+  
+  <div class="descricao-container" *ngIf="isDescriptionVisible" [@fadeIn]>
+    <mat-card class="filme-info">
+      <mat-card-content>
+        <p><strong>Diretor:</strong> {{ filme.director }}</p>
+        <p><strong>Data de Lançamento:</strong> {{ filme.release_date | date:'dd/MM/yyyy' }}</p>
+        <p class="descricao"><strong>Descrição:</strong> {{ filme.opening_crawl }}</p>
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="accent" (click)="voltarPagina()">Voltar</button>
   </div>
-  <mat-card class="filme-info">
-    <mat-card-content>
-      <p><strong>Diretor:</strong> {{ filme.director }}</p>
-      <p><strong>Data de Lançamento:</strong> {{ filme.release_date | date:'dd/MM/yyyy' }}</p>
-      <p class="descricao"><strong>Descrição:</strong> {{ filme.opening_crawl }}</p>
-    </mat-card-content>
-  </mat-card>
-  <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
 </div>
 
 <ng-template #loading>
