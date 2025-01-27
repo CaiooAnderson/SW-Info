@@ -32,4 +32,8 @@ export class FilmeDetalheComponent implements OnInit {
       });
     }
   }
+
+  voltar(): void {
+    window.history.back();
+  }
 }
