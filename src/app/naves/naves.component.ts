@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavesService } from '../services/naves.service';
@@ -8,6 +8,7 @@ import { Nave } from '../services/naves.interface';
   selector: 'app-naves',
   templateUrl: './naves.component.html',
   styleUrls: ['./naves.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NavesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'model', 'crew'];
