@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, style, transition, animate } from "@angular/animations";
 import { Router } from '@angular/router';
 import { FilmesService } from '../services/filmes.service';
 import { Filme } from '../services/filmes.interface';
@@ -7,6 +8,23 @@ import { Filme } from '../services/filmes.interface';
   selector: 'app-filmes',
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.scss'],
+  animations: [
+    trigger('filterTransition', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('200ms ease-out', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('150ms ease-in', style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('fadeInHeader', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class FilmesComponent implements OnInit {
   displayedColumns: string[] = ['title', 'release_date', 'director'];
@@ -14,11 +32,12 @@ export class FilmesComponent implements OnInit {
   highlightedFilm: Filme | null = null;
   isLoading = false;
   searchTitle = '';
+  noResults = false;
 
   constructor(private filmesService: FilmesService, private router: Router) {}
 
   ngOnInit(): void {
-      this.loadFilmes();
+    this.loadFilmes();
   }
 
   loadFilmes(search?: string): void {
@@ -27,6 +46,7 @@ export class FilmesComponent implements OnInit {
       next: (data) => {
         this.filmes = data.results.sort((a, b) => a.episode_id - b.episode_id);
         this.isLoading = false;
+        this.noResults = this.filmes.length === 0;
       },
       error: (err) => {
         console.error('Erro ao carregar os filmes:', err);
@@ -49,5 +69,10 @@ export class FilmesComponent implements OnInit {
 
   onSearch(): void {
     this.loadFilmes(this.searchTitle.trim());
+  }
+
+  reloadFilmes(): void {
+    this.searchTitle = '';
+    this.loadFilmes();
   }
 }

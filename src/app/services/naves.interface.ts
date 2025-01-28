@@ -4,6 +4,7 @@ export interface Nave {
   manufacturer: string;
   cost_in_credits: string;
   crew: string;
+  image: string;
 }
 
 export interface RespostaAPI<T> {

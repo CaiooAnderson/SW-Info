@@ -1,7 +1,12 @@
-<app-header title="Filmes"></app-header>
+<app-header [@fadeInHeader]="filmes" title="Filmes"></app-header>
 <div class="search-container" *ngIf="!isLoading">
   <input type="text" [(ngModel)]="searchTitle" placeholder="Digite o título do filme" class="search-input"/>
   <button (click)="onSearch()" class="search-button">Buscar</button>
+</div>
+
+<div *ngIf="!isLoading && filmes.length === 0" class="alert-empty">
+  Nenhum filme encontrado.
+  <button (click)="reloadFilmes()" class="reload-button">Voltar</button>
 </div>
 
 <div *ngIf="isLoading" class="loading">
@@ -10,7 +15,7 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="filmes" class="mat-elevation-z8" *ngIf="!isLoading">
+<table mat-table [dataSource]="filmes" class="mat-elevation-z8" *ngIf="!isLoading && filmes.length > 0">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef> Título </th>
     <td mat-cell *matCellDef="let filme" (click)="navegarParaDetalhes(filme)" 

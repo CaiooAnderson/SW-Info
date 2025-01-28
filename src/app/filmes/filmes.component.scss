@@ -45,6 +45,42 @@
   }
 }
 
+.alert-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffa600;
+  font-size: 1.2rem;
+  padding: 20px;
+  animation: fadeIn 0.6s ease-in;
+}
+
+.reload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.reload-button:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 table.mat-elevation-z8 {
   width: 100%;
   border-collapse: collapse;
@@ -52,6 +88,7 @@ table.mat-elevation-z8 {
   color: #ffffff; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border: 1px solid #2b2b2b;
+  transition: opacity 0.5s ease-in-out;
 
 
 th {

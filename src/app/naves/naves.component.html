@@ -16,20 +16,31 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading">
+<div *ngIf="!isLoading && noResultsFound" class="alert-empty">
+  Nenhuma nave encontrada.
+  <button (click)="reloadNaves()" class="reload-button">Voltar</button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading && !noResultsFound">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let nave"> {{ nave.name }} </td>
+    <td mat-cell *matCellDef="let nave" (click)="onRowClick(nave)">
+      {{ nave.name }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="model">
     <th mat-header-cell *matHeaderCellDef> Modelo </th>
-    <td mat-cell *matCellDef="let nave"> {{ nave.model }} </td>
+    <td mat-cell *matCellDef="let nave" (click)="onRowClick(nave)">
+      {{ nave.model }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="crew">
     <th mat-header-cell *matHeaderCellDef> Tripulação </th>
-    <td mat-cell *matCellDef="let nave"> {{ nave.crew }} </td>
+    <td mat-cell *matCellDef="let nave" (click)="onRowClick(nave)">
+      {{ nave.crew }}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -37,7 +48,7 @@
 </table>
 
 <mat-paginator
-  *ngIf="!isLoading"
+  *ngIf="!isLoading && !noResultsFound"
   [length]="totalDeNaves" 
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions" 
@@ -45,3 +56,11 @@
   color="accent"
   showFirstLastButtons aria-label="Selecione a página">
 </mat-paginator>
+
+<div *ngIf="selectedNave && !noResultsFound" class="nave-details">
+  <h3>Detalhes da Nave: {{ selectedNave.name }}</h3>
+  <p><strong>Modelo:</strong> {{ selectedNave.model }}</p>
+  <p><strong>Tripulação:</strong> {{ selectedNave.crew }}</p>
+  <p><strong>Fabricante:</strong> {{ selectedNave.manufacturer }}</p>
+  <img [src]="getNaveImage()" alt="{{ selectedNave.name }} image" />
+</div>

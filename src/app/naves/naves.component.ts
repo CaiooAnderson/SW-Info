@@ -17,17 +17,20 @@ export class NavesComponent implements OnInit {
   allNaves: Nave[] = [];
   searchTerm = '';
   isLoading = false;
+  selectedNave: Nave | null = null;
 
-  pageSize = 5;
+  pageSize = 4;
   pageSizeOptions = [5, 4, 3];
   currentPage = 0;
+
+  noResultsFound = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private navesService: NavesService) {}
 
   ngOnInit(): void {
-    this.pageSize = 5;
+    this.pageSize = 4;
     this.carregarTodasNaves();
 
     this.dataSource.filterPredicate = (data: Nave, filter: string) => {
@@ -43,6 +46,7 @@ export class NavesComponent implements OnInit {
         this.totalDeNaves = this.allNaves.length;
         this.atualizarTabela();
         this.isLoading = false;
+        this.noResultsFound = this.totalDeNaves === 0;
       },
       error: (err) => {
         console.error('Erro ao carregar naves:', err);
@@ -68,6 +72,8 @@ export class NavesComponent implements OnInit {
       this.paginator.pageIndex = this.currentPage;
       this.paginator.pageSize = this.pageSize;
     }
+
+    this.noResultsFound = dataToDisplay.length === 0;
   }
 
   onPageChange(event: PageEvent): void {
@@ -78,21 +84,51 @@ export class NavesComponent implements OnInit {
 
   onSearch(): void {
     this.isLoading = true;
+    this.selectedNave = null;
   
     setTimeout(() => {
       const searchTermLower = this.searchTerm.trim().toLowerCase();
       
-      if (!searchTermLower) {
-        this.totalDeNaves = this.allNaves.length;
-      } else {
-        this.totalDeNaves = this.allNaves.filter(nave =>
-          nave.name.toLowerCase().includes(searchTermLower)
-        ).length;
-      }
+      let filteredNaves = this.allNaves;
       
+      if (searchTermLower) {
+        filteredNaves = this.allNaves.filter(nave =>
+          nave.name.toLowerCase().includes(searchTermLower)
+        );
+      }
+
+      this.totalDeNaves = filteredNaves.length;
+      this.noResultsFound = this.totalDeNaves === 0;
+
       this.currentPage = 0;
-      this.atualizarTabela();
+      this.dataSource.data = filteredNaves.slice(0, this.pageSize);
       this.isLoading = false;
     }, 500);
+  }
+
+  reloadNaves(): void {
+    this.searchTerm = '';
+    this.carregarTodasNaves();
+  }
+
+  onRowClick(nave: Nave): void {
+    this.selectedNave = this.selectedNave === nave ? null : nave;
+    console.log('Nave selecionada:', this.selectedNave);
+  }
+
+  getNaveImage(): string {
+    if (this.selectedNave) {
+      const naveImages: { [key: string]: string } = {
+        'CR90 Corvette': '../../assets/CR90_Corvette.jpg',
+        'Star Destroyer': '../../assets/Star_Destroyer.jpg',
+        'Sentinel-class landing craft': '../../assets/Sentinel-class_landing_craft.jpg',
+        'Death Star': '../../assets/Death_Star.jpg',
+        'Millenium Falcon': '../../assets/Millenium_Falcon.jpg',
+      };
+  
+      return naveImages[this.selectedNave.name] || '../../assets/default-nave.jpg';
+    }
+  
+    return '../../assets/default-nave.jpg';
   }
 }
