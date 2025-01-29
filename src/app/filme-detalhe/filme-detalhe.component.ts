@@ -24,13 +24,21 @@ export class FilmeDetalheComponent implements OnInit {
   planetNames: { [url: string]: string } = {};
   displayedPlanets: { [url: string]: boolean } = {};
   planetImages: { [planetName: string]: string } = {
-    'Tatooine': '../../assets/Tatooine.svg',
-    'Naboo': '../../assets/Naboo.svg',
-    'Hoth': '../../assets/Hoth.svg',
-    'Dagobah': '../../assets/Dagobah.svg',
-    'Endor': '../../assets/Endor.svg',
-    'Alderaan': '../../assets/Alderaan.svg',
-    'unknown': '../../assets/unknown.svg'
+    'Tatooine': '../../assets/planets/Tatooine.svg',
+    'Naboo': '../../assets/planets/Naboo.svg',
+    'Hoth': '../../assets/planets/Hoth.svg',
+    'Dagobah': '../../assets/planets/Dagobah.svg',
+    'Endor': '../../assets/planets/Endor.svg',
+    'Alderaan': '../../assets/planets/Alderaan.svg',
+    'Coruscant': '../../assets/planets/Coruscant.svg',
+    'Mustafar': '../../assets/planets/Mustafar.svg',
+    'Yavin IV': '../../assets/planets/Yavin_IV.svg',
+    'Bespin': '../../assets/planets/Bespin.svg',
+    'Kamino': '../../assets/planets/Kamino.svg',
+    'Geonosis': '../../assets/planets/Geonosis.svg',
+    'Utapau': '../../assets/planets/Utapau.svg',
+    'Kashyyyk': '../../assets/planets/Kashyyyk.svg',
+    'unknown': '../../assets/planets/unknown.svg'
   };
 
   constructor(
