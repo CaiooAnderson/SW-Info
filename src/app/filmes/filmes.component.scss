@@ -2,8 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 44px 0 20px;
+  padding: 44px 0 40px;
   gap: 10px;
+  background: linear-gradient(135deg, #1e202a, #3a5179);
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
 
   .search-input {
     padding: 10px 15px;
@@ -43,6 +46,12 @@
       transform: scale(0.95);
     }
   }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .alert-empty {

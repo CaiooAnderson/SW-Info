@@ -2,8 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 44px 0 20px;
+  padding: 44px 0 40px;
   gap: 10px;
+  background: linear-gradient(135deg, #262626, #3b3634);
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
   
   .search-input {
     padding: 10px 15px;
@@ -44,10 +47,16 @@
     }
   }
 }
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   
 table.mat-elevation-z8 {
   width: 100%;
-  margin: 20px 0 0;
+  margin: 0;
   border-bottom: 1px solid #555;
 }
   
@@ -72,6 +81,7 @@ table.mat-elevation-z8 {
     font-weight: bold;
     padding: 15px;
     border-bottom: 2px solid #ffa600;
+    border-top: 2px solid #ffa600;
     text-align: left;
   }
 
@@ -85,6 +95,7 @@ table.mat-elevation-z8 {
   tr:hover td {
     background-image: linear-gradient(to top, #cf3232 0%, #fee140 100%);
     color: #fff;
+    cursor: pointer;
   }
 
   tr:nth-child(odd) {
