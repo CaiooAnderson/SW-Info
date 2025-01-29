@@ -21,6 +21,17 @@ export class FilmeDetalheComponent implements OnInit {
   filme: Filme | null = null;
   isLoading = true;
   isDescriptionVisible = false;
+  planetNames: { [url: string]: string } = {};
+  displayedPlanets: { [url: string]: boolean } = {};
+  planetImages: { [planetName: string]: string } = {
+    'Tatooine': '../../assets/Tatooine.svg',
+    'Naboo': '../../assets/Naboo.svg',
+    'Hoth': '../../assets/Hoth.svg',
+    'Dagobah': '../../assets/Dagobah.svg',
+    'Endor': '../../assets/Endor.svg',
+    'Alderaan': '../../assets/Alderaan.svg',
+    'unknown': '../../assets/unknown.svg'
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +46,7 @@ export class FilmeDetalheComponent implements OnInit {
           this.filme = data.results.find(filme => filme.episode_id.toString() === episodeId) || null;
           this.isLoading = false;
           this.showDescription();
+          this.loadPlanetNames();
         },
         error: (err) => {
           console.error('Erro ao carregar detalhes do filme', err);
@@ -45,6 +57,10 @@ export class FilmeDetalheComponent implements OnInit {
   }
 
   getBackgroundImage(): string {
+    if (this.isLoading) {
+      return '../../assets/vader_loading.gif';
+    }
+
     if (this.filme) {
       const backgrounds: { [key: string]: string } = {
         'The Phantom Menace': '../../assets/The_Phantom_Menace.svg',
@@ -54,7 +70,6 @@ export class FilmeDetalheComponent implements OnInit {
         'The Empire Strikes Back': '../../assets/The_Empire_Strikes_Back.svg',
         'Return of the Jedi': '../../assets/Return_of_the_Jedi.svg',
       };
-
       return backgrounds[this.filme.title] || '../../assets/starwars.jpg';
     }
 
@@ -65,6 +80,29 @@ export class FilmeDetalheComponent implements OnInit {
     setTimeout(() => {
       this.isDescriptionVisible = true; 
     }, 500);
+  }
+
+  loadPlanetNames(): void {
+    if (this.filme?.planets) {
+      this.filme.planets.forEach(url => {
+        this.fetchPlanetName(url);
+      });
+    }
+  }
+
+  fetchPlanetName(url: string): void {
+    this.filmesService.getPlaneta(url).subscribe({
+      next: (planet) => {
+        this.planetNames[url] = planet.name;
+      },
+      error: (err) => {
+        console.error(`Erro ao carregar o planeta ${url}`, err);
+      }
+    });
+  }
+
+  showPlanetImage(url: string): void {
+    this.displayedPlanets[url] = true;
   }
 
   voltarPagina(): void {

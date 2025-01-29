@@ -20,5 +20,9 @@ export class FilmesService {
     const url = search ? `${this.apiUrl}?search=${search}` : this.apiUrl;
     return this.http.get<RespostaAPI<Filme>>(url);
   }
+
+  getPlaneta(url: string) {
+    return this.http.get<any>(url);
+  }
 }
 

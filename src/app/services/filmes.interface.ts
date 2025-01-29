@@ -5,6 +5,7 @@ export interface Filme {
     director: string;
     producer: string;
     release_date: string;
+    planets: string[];
   }
   
   export interface RespostaAPI<T> {
