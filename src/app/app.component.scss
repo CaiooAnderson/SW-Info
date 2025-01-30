@@ -12,9 +12,13 @@
       color: #fff;
       font-size: 1.2rem;
       font-weight: bold;
-      padding: 0.5rem 1rem;
+      padding: 0.4vw 1.2vw;
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
+      
+      @media (max-width: 400px) {
+        padding: 1vw 2vw;
+      }
   
       &:hover:first-child {
         background: linear-gradient(125deg, rgba(12,12,12,1) 0%, rgba(58,58,58,1) 55%);
@@ -44,5 +48,3 @@
       }
     }
   }
-
-  
