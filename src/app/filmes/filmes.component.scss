@@ -46,6 +46,14 @@
       transform: scale(0.95);
     }
   }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+
+    .search-input {
+      width: 60%;
+    }
+  }
 }
 
 @keyframes gradientMove {
@@ -143,4 +151,9 @@ tr:nth-child(even) {
   height: calc(90vh - 300px);
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 240px;
+
+  @media (max-width: 430px) {
+    width: 100vw;
+    height: calc(90vh - 100px);
+  }
 }
