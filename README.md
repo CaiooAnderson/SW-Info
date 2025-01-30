@@ -11,4 +11,5 @@
 ## Futuramente Pensar:
 ```
 1. Novos componentes (People, Vehicles, Species).
+2. Responsividade
 ```
