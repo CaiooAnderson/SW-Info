@@ -21,24 +21,31 @@ export class FilmeDetalheComponent implements OnInit {
   filme: Filme | null = null;
   isLoading = true;
   isDescriptionVisible = false;
+  allPlanetsDisplayed = false;
   planetNames: { [url: string]: string } = {};
   displayedPlanets: { [url: string]: boolean } = {};
   planetImages: { [planetName: string]: string } = {
-    'Tatooine': '../../assets/planets/Tatooine.svg',
-    'Naboo': '../../assets/planets/Naboo.svg',
-    'Hoth': '../../assets/planets/Hoth.svg',
+    'Alderaan': '../../assets/planets/Alderaan.svg',
+    'Bespin': '../../assets/planets/Bespin.svg',
+    'Cato Neimoidia': '../../assets/planets/Cato_Neimoidia.svg',
+    'Coruscant': '../../assets/planets/Coruscant.svg',
     'Dagobah': '../../assets/planets/Dagobah.svg',
     'Endor': '../../assets/planets/Endor.svg',
-    'Alderaan': '../../assets/planets/Alderaan.svg',
-    'Coruscant': '../../assets/planets/Coruscant.svg',
-    'Mustafar': '../../assets/planets/Mustafar.svg',
-    'Yavin IV': '../../assets/planets/Yavin_IV.svg',
-    'Bespin': '../../assets/planets/Bespin.svg',
-    'Kamino': '../../assets/planets/Kamino.svg',
+    'Felucia': '../../assets/planets/Felucia.svg',
     'Geonosis': '../../assets/planets/Geonosis.svg',
-    'Utapau': '../../assets/planets/Utapau.svg',
+    'Hoth': '../../assets/planets/Hoth.svg',
+    'Kamino': '../../assets/planets/Kamino.svg',
     'Kashyyyk': '../../assets/planets/Kashyyyk.svg',
-    'unknown': '../../assets/planets/unknown.svg'
+    'Mustafar': '../../assets/planets/Mustafar.svg',
+    'Mygeeto': '../../assets/planets/Mygeeto.svg',
+    'Naboo': '../../assets/planets/Naboo.svg',
+    'Ord Mantell': '../../assets/planets/Ord_Mantell.svg',
+    'Polis Massa': '../../assets/planets/Polis_Massa.svg',
+    'Saleucami': '../../assets/planets/Saleucami.svg',
+    'Tatooine': '../../assets/planets/Tatooine.svg',
+    'Utapau': '../../assets/planets/Utapau.svg',
+    'Yavin IV': '../../assets/planets/Yavin_IV.svg',
+    'Unknown': '../../assets/planets/Unknown.svg'
   };
 
   constructor(
@@ -98,6 +105,15 @@ export class FilmeDetalheComponent implements OnInit {
     }
   }
 
+  showAllPlanets(): void {
+    if (this.filme?.planets) {
+      this.filme.planets.forEach(planetUrl => {
+        this.displayedPlanets[planetUrl] = true;
+      });
+      this.allPlanetsDisplayed = true;
+    }
+  }
+
   fetchPlanetName(url: string): void {
     this.filmesService.getPlaneta(url).subscribe({
       next: (planet) => {
@@ -111,6 +127,13 @@ export class FilmeDetalheComponent implements OnInit {
 
   showPlanetImage(url: string): void {
     this.displayedPlanets[url] = true;
+    this.checkAllPlanetsDisplayed();
+  }
+
+  checkAllPlanetsDisplayed(): void {
+    if (this.filme?.planets) {
+      this.allPlanetsDisplayed = this.filme.planets.every(url => this.displayedPlanets[url]);
+    }
   }
 
   voltarPagina(): void {

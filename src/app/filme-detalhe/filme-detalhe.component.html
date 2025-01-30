@@ -13,6 +13,11 @@
         <div class="planetas-container">
           <ng-container *ngIf="filme?.planets?.length">
             <h3>Planetas</h3>
+            
+            <button class="btn-mostrar-todos" *ngIf="!allPlanetsDisplayed" (click)="showAllPlanets()">
+              Exibir todos
+            </button>
+
             <div class="planeta-grid">
               <ng-container *ngFor="let planetUrl of filme.planets">
                 <div class="planeta-item">
@@ -22,7 +27,7 @@
                   <img
                     *ngIf="displayedPlanets[planetUrl]"
                     [@fadeIn]
-                    [src]="planetImages[planetNames[planetUrl]] || '../../assets/unknown.svg'"
+                    [src]="planetImages[planetNames[planetUrl]] || '../../assets/planets/Unknown.svg'"
                     [alt]="planetNames[planetUrl]"
                   />
                 </div>

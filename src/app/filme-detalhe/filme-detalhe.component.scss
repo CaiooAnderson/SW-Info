@@ -44,16 +44,63 @@
 
 .planetas-container {
   margin-top: 20px;
-  padding: 15px;
+  padding: 16px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   text-align: center;
+
+  h3 {
+    font-size: 28px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 8px rgba(0, 119, 255, 0.25));
+  }
+
+  .btn-mostrar-todos {
+    background: linear-gradient(135deg, #1b1464, #3498db);
+    color: #fff;
+    min-width: 120px;
+    padding: 12px 18px;
+    margin: 0px auto 40px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease, background-position 0.5s;
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+    border: none;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 6px rgba(31, 195, 255, 0.8);
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   .planeta-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 15px;
+    gap: 16px;
 
     .planeta-item {
       display: flex;
@@ -61,23 +108,62 @@
       align-items: center;
 
       button {
-        background-color: #e5a400;
-        color: black;
+        background: linear-gradient(135deg, #0073ff, #4a90e2, #001f5c);
+        color: #fff;
+        min-width: 60px;
         padding: 8px 12px;
-        border: none;
+        border-radius: 8px;
         cursor: pointer;
-        transition: transform 0.3s ease-in-out;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        animation: gradient-shift 6s ease infinite;
+        transition: background 0.4s ease-in-out, transform 0.3s;
+        border: none;
 
         &:hover {
-          transform: scale(1.1);
+          background: linear-gradient(135deg, #4a90e2, #0073ff, #001f5c);
+          transform: translateY(-3px) scale(1.1);
+          box-shadow: 0 4px 14px rgba(68, 152, 255, 0.25);
+        }
+
+        &:active {
+          transform: translateY(1px) scale(1);
+          box-shadow: 0 4px 8px rgba(0, 115, 255, 0.3);
+        }
+      }
+
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
         }
       }
 
       img {
         max-width: 100px;
         max-height: 100px;
-        border-radius: 50%;
+        border-radius: 0;
         margin-top: 10px;
+        margin-bottom: 25px;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+        animation: float 3s ease-in-out infinite; /* Adicionando a animação de flutuação */
+
+        @keyframes float {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px); /* Movimento para cima */
+          }
+          100% {
+            transform: translateY(0); /* Retorna à posição original */
+          }
+        }
       }
     }
   }
