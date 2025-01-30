@@ -57,10 +57,20 @@
   showFirstLastButtons aria-label="Selecione a página">
 </mat-paginator>
 
-<div *ngIf="selectedNave && !noResultsFound" class="nave-details">
-  <h3>Detalhes da Nave: {{ selectedNave.name }}</h3>
-  <p><strong>Modelo:</strong> {{ selectedNave.model }}</p>
-  <p><strong>Tripulação:</strong> {{ selectedNave.crew }}</p>
-  <p><strong>Fabricante:</strong> {{ selectedNave.manufacturer }}</p>
-  <img [src]="getNaveImage()" alt="{{ selectedNave.name }} image" />
+<div *ngIf="selectedNave && !noResultsFound" class="nave-details-container">
+  <div class="nave-details-desc">
+    <h3>Nave: {{ selectedNave.name }}</h3>
+    <p><strong>Modelo:</strong> {{ selectedNave.model }}</p>
+    <p><strong>Tripulação:</strong> {{ selectedNave.crew }}</p>
+    <p><strong>Fabricante:</strong> {{ selectedNave.manufacturer }}</p>
+  </div>
+  
+  <div class="button-container">
+    <button class="learn-more-button">Saiba Mais</button>
+  </div>
+  
+  <div class="nave-details-image">
+    <img [src]="getNaveImage()" alt="{{ selectedNave.name }} image" />
+  </div>
+
 </div>
