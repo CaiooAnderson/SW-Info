@@ -196,7 +196,7 @@ table.mat-elevation-z8 {
   }
 
   .nave-details-desc {
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #ffa600;
     background-color: #fff;
     padding: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -222,16 +222,30 @@ table.mat-elevation-z8 {
     align-items: center;
 
     img {
-      width: 150px;
+      width: 250px;
       height: 150px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      animation: brightness-and-shadow 4s ease-in-out infinite;
     }
+  }
 
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  @keyframes brightness-and-shadow {
+    0% {
+      filter: brightness(1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+    }
+    5% {
+      filter: brightness(1) drop-shadow(0 0 4px rgba(49, 49, 49, 0.3));
+    }
+    25% {
+      filter: brightness(1.2) drop-shadow(0 0 12px rgba(255, 128, 0, 0.8));
+    }
+    90% {
+      filter: brightness(0.75) drop-shadow(0 0px 20px rgb(194, 0, 0));
+    }
+    100% {
+      filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
     }
   }
 
@@ -240,7 +254,7 @@ table.mat-elevation-z8 {
     justify-content: center;
 
     .learn-more-button {
-      background-color: #007bff;
+      background-color: #ff6a00;
       color: white;
       border: none;
       padding: 12px 24px;
@@ -250,15 +264,29 @@ table.mat-elevation-z8 {
       border: none;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s ease;
+      animation: pulse 2s infinite;
 
       &:hover {
-        background-color: #0056b3;
+        background-color: #ff3300;
         transform: translateY(-2px);
+        animation: none;
       }
 
       &:active {
         transform: translateY(1px);
       }
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 
@@ -281,7 +309,6 @@ table.mat-elevation-z8 {
   }  
 }
 
-
 .alert-empty {
   display: flex;
   flex-direction: column;
@@ -289,13 +316,14 @@ table.mat-elevation-z8 {
   justify-content: center;
   text-align: center;
   color: #ffa600;
+  background: linear-gradient(0deg, #141414 0%, #1a1a1a 10%, #1e1e1e 90%, #2d2d2d 100%);
   font-size: 1.2rem;
   padding: 20px;
   animation: fadeIn 0.6s ease-in;
 }
 
 .reload-button {
-  background-color: #007bff;
+  background-color: #ff6a00;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -306,7 +334,7 @@ table.mat-elevation-z8 {
 }
 
 .reload-button:hover {
-  background-color: #0056b3;
+  background-color: #ff3300;
 }
 
 @keyframes fadeIn {

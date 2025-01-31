@@ -119,16 +119,47 @@ export class NavesComponent implements OnInit {
   getNaveImage(): string {
     if (this.selectedNave) {
       const naveImages: { [key: string]: string } = {
-        'CR90 Corvette': '../../assets/CR90_Corvette.jpg',
-        'Star Destroyer': '../../assets/Star_Destroyer.jpg',
-        'Sentinel-class landing craft': '../../assets/Sentinel-class_landing_craft.jpg',
-        'Death Star': '../../assets/Death_Star.jpg',
-        'Millenium Falcon': '../../assets/Millenium_Falcon.jpg',
+        'A-wing': '../../assets/starships/A-wing.svg',
+        'AA-9 Coruscant freighter': '../../assets/starships/AA-9_Coruscant_freighter.svg',
+        'arc-170': '../../assets/starships/arc-170.svg',
+        'B-wing': '../../assets/starships/B-wing.svg',
+        'Banking clan frigte': '../../assets/starships/Banking_clan_frigte.svg',
+        'Belbullab-22 starfighter': '../../assets/starships/Belbullab-22_starfighter.svg',
+        'Calamari Cruiser': '../../assets/starships/Calamari_Cruiser.svg',
+        'CR90 corvette': '../../assets/starships/CR90_corvette.svg',
+        'Death Star': '../../assets/starships/Death_Star.svg',
+        'Droid control ship': '../../assets/starships/Droid_control_ship.svg',
+        'EF76 Nebulon-B escort frigate': '../../assets/starships/EF76_Nebulon-B_escort_frigate.svg',
+        'Executor': '../../assets/starships/Executor.svg',
+        'H-type Nubian yacht': '../../assets/starships/H-type_Nubian_yacht.svg',
+        'Imperial shuttle': '../../assets/starships/Imperial_shuttle.svg',
+        'J-type diplomatic barge': '../../assets/starships/J-type_diplomatic_barge.svg',
+        'Jedi Interceptor': '../../assets/starships/Jedi_Interceptor.svg',
+        'Jedi starfighter': '../../assets/starships/Jedi_starfighter.svg',
+        'Millennium Falcon': '../../assets/starships/Millennium_Falcon.svg',
+        'Naboo fighter': '../../assets/starships/Naboo_fighter.svg',
+        'Naboo Royal Starship': '../../assets/starships/Naboo_Royal_Starship.svg',
+        'Naboo star skiff': '../../assets/starships/Naboo_star_skiff.svg',
+        'Rebel transport': '../../assets/starships/Rebel_transport.svg',
+        'Republic Assault ship': '../../assets/starships/Republic_Assault_ship.svg',
+        'Republic attack cruiser': '../../assets/starships/Republic_attack_cruiser.svg',
+        'Republic Cruiser': '../../assets/starships/Republic_Cruiser.svg',
+        'Scimitar': '../../assets/starships/Scimitar.svg',
+        'Sentinel-class landing craft': '../../assets/starships/Sentinel-class_landing_craft.svg',
+        'Slave 1': '../../assets/starships/Slave_1.svg',
+        'Solar Sailer': '../../assets/starships/Solar_Sailer.svg',
+        'Star Destroyer': '../../assets/starships/Star_Destroyer.svg',
+        'Theta-class T-2c shuttle': '../../assets/starships/Theta-class_T-2c_shuttle.svg',
+        'TIE Advanced x1': '../../assets/starships/TIE_Advanced_x1.svg',
+        'Trade Federation cruiser': '../../assets/starships/Trade_Federation_cruiser.svg',
+        'V-wing': '../../assets/starships/V-wing.svg',
+        'X-wing': '../../assets/starships/X-wing.svg',
+        'Y-wing': '../../assets/starships/Y-wing.svg'
       };
   
-      return naveImages[this.selectedNave.name] || '../../assets/default-nave.jpg';
+      return naveImages[this.selectedNave.name] || '../../assets/starships/default-nave.jpg';
     }
   
-    return '../../assets/default-nave.jpg';
+    return '../../assets/starships/default-nave.jpg';
   }
 }
