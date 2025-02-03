@@ -15,6 +15,7 @@ import { NavesComponent } from './naves/naves.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
+import { NaveDetalheComponent } from './nave-detalhe/nave-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
     NavesComponent,
     HeaderComponent,
     FilmeDetalheComponent,
+    NaveDetalheComponent,
   ],
   imports: [
     MatTableModule,

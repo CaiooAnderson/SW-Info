@@ -1,0 +1,137 @@
+.nave-detalhe-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  
+    .back-button-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    
+        button {
+          background-color: #ff5733;
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s;
+    
+          &:hover {
+            background-color: #c70039;
+            transform: translateY(-3px);
+          }
+    
+          &:active {
+            transform: translateY(1px);
+          }
+        }
+      }
+  
+    .nave-info {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+  
+        background-color: #ffe6e1;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        div {
+            flex: 1;
+        }
+
+        .custo, .classificacao {
+            background-color: #fff5f0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ff4500;
+    
+            h2 {
+              font-size: 1.8em;
+              color: #cc3700;
+            }
+      
+            ul {
+              list-style: none;
+              padding: 0;
+              li {
+                background: #ffe0d6;
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 4px;
+              }
+            }
+          }
+
+      h1 {
+        font-size: 2.4em;
+        color: #ff4500;
+      }
+  
+      p {
+        font-size: 1.2em;
+        margin: 5px 0;
+      }
+    }
+
+    .extra-info {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        background-color: #f0f9f0;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+      .films-section, .pilots-section {
+        background-color: #e5f8e5;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px solid #2b9d2b;
+  
+        h2 {
+          font-size: 1.8em;
+          color: #1f7a1f;
+        }
+  
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            li {
+                background: #d4f0d4;
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 4px;
+            }
+        }
+    }
+    }
+  }
+
+  .loading-nave-detalhes {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    background-color: #000;
+  }
+  
+  .loading-nave-detalhes img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 50vw;
+    height: 50vh;
+  }

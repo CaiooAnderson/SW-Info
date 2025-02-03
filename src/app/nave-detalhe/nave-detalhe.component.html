@@ -1,0 +1,38 @@
+<div class="nave-detalhe-container" *ngIf="!isLoading">
+  <div class="back-button-container">
+    <button (click)="voltar()">Voltar</button>
+  </div>
+
+  <h1>{{ nave?.name }}</h1>
+
+  <div>
+    <div class="nave-info">
+      <div class="custo">
+        <p><strong>Custo (créditos):</strong> {{ nave?.cost_in_credits }}</p>
+      </div>
+      <div class="classificacao">
+        <p><strong>Hyperdrive Rating:</strong> {{ nave?.hyperdrive_rating }}</p>
+      </div>
+    </div>
+
+    <div class="extra-info">
+      <div class="films-section">
+        <h2>Filmes</h2>
+        <ul>
+          <li *ngFor="let film of films">{{ film }}</li>
+        </ul>
+      </div>
+
+      <div class="pilots-section">
+        <h2>Pilotos</h2>
+        <ul>
+          <li *ngFor="let pilot of pilots">{{ pilot }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loading-nave-detalhes">
+  <img src="../../assets/imperial_loading.gif" alt="Carregando informações..." />
+</div>

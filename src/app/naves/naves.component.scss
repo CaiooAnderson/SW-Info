@@ -61,13 +61,7 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-  
-table.mat-elevation-z8 {
-  width: 100%;
-  margin: 0;
-  border-bottom: 1px solid #555;
-}
-  
+   
 .mat-paginator {
   margin-top: 10px;
   display: flex;
@@ -81,7 +75,9 @@ table.mat-elevation-z8 {
   color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border: 1px solid #333;
-  
+  margin: 0;
+  border-bottom: 1px solid #555;
+
   th {
     background-color: #333;
     color: #ffa600; 
@@ -183,7 +179,7 @@ table.mat-elevation-z8 {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(0, 0, 0, 0.85);
   border: 1px solid #ccc;
   padding: 20px;
   justify-content: space-between;
@@ -197,22 +193,23 @@ table.mat-elevation-z8 {
 
   .nave-details-desc {
     border-left: 4px solid #ffa600;
-    background-color: #fff;
+    background-color: #000;
     padding: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 
     h3 {
       font-size: 1.8em;
-      color: #333;
+      color: #fff;
       margin-bottom: 10px;
-      text-transform: uppercase;
       letter-spacing: 1.5px;
     }
 
     p {
       margin: 8px 0;
       font-size: 1.1em;
-      color: #555;
+      color: #fffafa;
     }
   }
 

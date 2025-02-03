@@ -5,6 +5,9 @@ export interface Nave {
   cost_in_credits: string;
   crew: string;
   image: string;
+  hyperdrive_rating: string;
+  films: string[];
+  pilots: string[];
 }
 
 export interface RespostaAPI<T> {

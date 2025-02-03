@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Nave } from './naves.interface';
 
@@ -28,5 +28,15 @@ export class NavesService {
     };
 
     return fetchPage(this.apiUrl);
+  }
+
+  getNavePorId(id: string): Observable<Nave> {
+    return this.http.get<Nave>(`${this.apiUrl}${id}/`);
+  }
+  
+  getFilmesETripulantes(urls: string[]): Observable<any[]> {
+    return urls.length
+      ? forkJoin(urls.map(url => this.http.get(url)))
+      : of([]);
   }
 }

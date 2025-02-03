@@ -3,6 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavesService } from '../services/naves.service';
 import { Nave } from '../services/naves.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-naves',
@@ -27,7 +28,7 @@ export class NavesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private navesService: NavesService) {}
+  constructor(private navesService: NavesService, private router: Router) {}
 
   ngOnInit(): void {
     this.pageSize = 4;
@@ -161,5 +162,11 @@ export class NavesComponent implements OnInit {
     }
   
     return '../../assets/starships/default-nave.jpg';
+  }
+
+  irParaDetalhes() {
+    if (this.selectedNave) {
+      this.router.navigate(['/nave-detalhe', this.selectedNave.name]);
+    }
   }
 }
