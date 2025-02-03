@@ -15,6 +15,9 @@ EM ANDAMENTO -> 1. Adicionar imagens das Naves nos detalhes das Naves e Botão c
 5. Tentar adicionar os 3 filmes da Saga Star Wars na tabela sem precisar da API (Ep. 7, Ep. 8, Ep. 9).
 6. Fazer a sessão Início do Site.
 7. Ícone para o site (Ícone na guia do navegador).
+<<<<<<< HEAD
+>>>>>>> e00b9bee4392e00ffe14d27aeec1f0fb0fbbab70
+=======
 >>>>>>> e00b9bee4392e00ffe14d27aeec1f0fb0fbbab70
 ```
 
@@ -28,4 +31,7 @@ EM ANDAMENTO -> 1. Adicionar imagens das Naves nos detalhes das Naves e Botão c
 =======
 2. Responsividade
 ```
+<<<<<<< HEAD
+>>>>>>> e00b9bee4392e00ffe14d27aeec1f0fb0fbbab70
+=======
 >>>>>>> e00b9bee4392e00ffe14d27aeec1f0fb0fbbab70
