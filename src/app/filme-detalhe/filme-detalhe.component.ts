@@ -77,10 +77,12 @@ export class FilmeDetalheComponent implements OnInit {
     }
 
     if (this.filme) {
+      const isMobile = window.innerWidth < 500;
+
       const backgrounds: { [key: string]: string } = {
         'The Phantom Menace': '../../assets/films/The_Phantom_Menace.svg',
-        'Attack of the Clones': '../../assets/films/Attack_of_the_Clones.svg',
-        'Revenge of the Sith': '../../assets/films/Revenge_of_the_Sith.svg',
+        'Attack of the Clones': isMobile ? '../../assets/films/Attack_of_the_Clones_500.svg' : '../../assets/films/Attack_of_the_Clones.svg',
+        'Revenge of the Sith': isMobile ? '../../assets/films/Revenge_of_the_Sith_500.svg' : '../../assets/films/Revenge_of_the_Sith.svg',
         'A New Hope': '../../assets/films/A_New_Hope.svg',
         'The Empire Strikes Back': '../../assets/films/The_Empire_Strikes_Back.svg',
         'Return of the Jedi': '../../assets/films/Return_of_the_Jedi.svg',

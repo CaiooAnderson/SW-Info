@@ -8,26 +8,34 @@
   <div>
     <div class="nave-info">
       <div class="custo">
-        <p><strong>Custo (créditos):</strong> {{ nave?.cost_in_credits }}</p>
+        <p><strong>Custo:</strong> {{ nave?.cost_in_credits }} créditos</p>
       </div>
       <div class="classificacao">
-        <p><strong>Hyperdrive Rating:</strong> {{ nave?.hyperdrive_rating }}</p>
+        <p><strong>Velocidade Hyperdrive:</strong> {{ nave?.hyperdrive_rating }}</p>
       </div>
     </div>
 
-    <div class="extra-info">
-      <div class="films-section">
-        <h2>Filmes</h2>
-        <ul>
-          <li *ngFor="let film of films">{{ film }}</li>
-        </ul>
+    <div class="parent-container">
+      <div class="extra-info">
+        <div class="films-section">
+          <h2>Filmes</h2>
+          <ul>
+            <li *ngFor="let film of films">
+              <img [src]="getFilmBackgroundImage(film)" [alt]="film">
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
 
-      <div class="pilots-section">
-        <h2>Pilotos</h2>
-        <ul>
-          <li *ngFor="let pilot of pilots">{{ pilot }}</li>
-        </ul>
+    <div class="parent-container">
+      <div class="extra-info">
+        <div class="pilots-section">
+          <h2>Pilotos</h2>
+          <ul>
+            <li *ngFor="let pilot of pilots">{{ pilot }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
