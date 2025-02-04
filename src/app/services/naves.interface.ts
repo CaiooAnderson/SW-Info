@@ -3,6 +3,7 @@ export interface Nave {
   model: string;
   manufacturer: string;
   cost_in_credits: string;
+  length: string;
   crew: string;
   image: string;
   hyperdrive_rating: string;
