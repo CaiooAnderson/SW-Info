@@ -13,6 +13,12 @@
       <div class="classificacao">
         <p><strong>Velocidade Hyperdrive:</strong> {{ nave?.hyperdrive_rating }}</p>
       </div>
+      <div class="comprimento">
+        <p><strong>Comprimento:</strong> {{ nave?.length }} metros</p>
+      </div>
+      <div class="passageiros">
+        <p><strong>Passageiros:</strong> {{ nave?.length }} passageiros</p>
+      </div>
     </div>
 
     <div class="parent-container">
@@ -28,7 +34,7 @@
       </div>
     </div>
 
-    <div class="parent-container">
+    <div class="parent-container" *ngIf="hasPilots()">
       <div class="extra-info">
         <div class="pilots-section">
           <h2>Pilotos</h2>
@@ -42,5 +48,5 @@
 </div>
 
 <div *ngIf="isLoading" class="loading-nave-detalhes">
-  <img src="../../assets/imperial_loading.gif" alt="Carregando informações..." />
+  <img src="../../assets/imperial_loading.png" alt="Carregando informações..." />
 </div>

@@ -64,6 +64,10 @@ export class NaveDetalheComponent implements OnInit {
     return filmBackgrounds[film] || '../../assets/starwars.jpg';
   }
 
+  hasPilots(): boolean {
+    return this.pilots.length > 0;
+  }  
+
   voltar() {
     this.router.navigate(['/naves']);
   }
