@@ -57,7 +57,7 @@
   showFirstLastButtons aria-label="Selecione a página">
 </mat-paginator>
 
-<div *ngIf="selectedNave && !noResultsFound" class="nave-details-container">
+<div #naveDetailsContainer *ngIf="selectedNave && !noResultsFound" class="nave-details-container">
   <div class="nave-details-desc">
     <h3><strong>Nave:</strong> {{ selectedNave.name }}</h3>
     <p><strong>Modelo:</strong> {{ selectedNave.model }}</p>

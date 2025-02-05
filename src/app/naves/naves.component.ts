@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, ElementRef } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavesService } from '../services/naves.service';
@@ -27,6 +27,7 @@ export class NavesComponent implements OnInit {
   noResultsFound = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('naveDetailsContainer', { static: false }) naveDetailsContainer!: ElementRef;
 
   constructor(private navesService: NavesService, private router: Router) {}
 
@@ -114,6 +115,13 @@ export class NavesComponent implements OnInit {
 
   onRowClick(nave: Nave): void {
     this.selectedNave = this.selectedNave === nave ? null : nave;
+
+    setTimeout(() => {
+      if (this.naveDetailsContainer) {
+        this.naveDetailsContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+    
     console.log('Nave selecionada:', this.selectedNave);
   }
 

@@ -61,6 +61,11 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
    
 .mat-paginator {
   margin-top: 10px;
@@ -78,22 +83,27 @@ table.mat-elevation-z8 {
   margin: 0;
   border-bottom: 1px solid #555;
 
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+
   th {
     background-color: #333;
     color: #ffa600; 
     text-transform: uppercase;
     font-weight: bold;
-    padding: 15px;
     border-bottom: 2px solid #ffa600;
     border-top: 2px solid #ffa600;
-    text-align: left;
   }
 
   td {
-    padding: 15px;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   tr:hover td {
@@ -122,7 +132,7 @@ table.mat-elevation-z8 {
   padding: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 
-  .mat-paginator-range-label {
+  .mat-mdc-paginator-range-label {
     color: #ffa600;
     font-weight: bold;
     margin: 0 15px;
