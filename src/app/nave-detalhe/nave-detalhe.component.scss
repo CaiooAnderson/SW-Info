@@ -51,11 +51,13 @@
       justify-content: center;
     
       button {
-        background-color: rgba(255, 107, 53, 0.25);
+        background-color: #2a2a2a80;
         color: #fff;
-        padding: 12px 24px;
+        padding: 12px 18px;
         font-size: 16px;
-        border: 1px solid #ffa366;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border: 1px solid #ff6b3580;
         border-radius: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -63,7 +65,9 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     
         &:hover {
-          background-color: #ffa366;
+          background-color: #2a2a2a;
+          border-color: #ff6b35 ;
+          filter: brightness(1.5);
           transform: translateY(-5px) scale(1.05);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
