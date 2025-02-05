@@ -45,6 +45,78 @@
         background: linear-gradient(357deg, rgba(12,12,12,1) 0%, rgba(58,58,58,1) 65%) !important;
         border: 1px solid #FFD700;
         color: #e0e0e0;
-      }
     }
   }
+}
+
+// Este funciona
+
+// :host ::ng-deep .mat-mdc-paginator-range-label {
+//   color: #ffa600 !important;
+// } 
+
+// Este não funcionou ainda
+
+// :host ::ng-deep .mat-paginator {
+//   margin-top: 10px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   background-color: #292929 !important;
+//   border-radius: 8px;
+//   padding: 10px;
+//   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
+//   .mat-mdc-paginator-range-label {
+//     color: #ffa600;
+//     font-weight: bold;
+//     margin: 0 15px;
+//   }
+
+//   .mat-paginator-navigation-button {
+//     color: #ffa600;
+//     transition: transform 0.2s ease, background-color 0.3s ease;
+
+//     &:hover {
+//       background-color: rgba(255, 166, 0, 0.1);
+//       transform: scale(1.1);
+//       border-radius: 50%;
+//     }
+
+//     &:disabled {
+//       color: #555;
+//     }
+//   }
+
+//   .mat-paginator-page-size-select {
+//     background-color: #1f1f1f;
+//     color: #ffa600;
+//     border: 1px solid #ffa600;
+//     border-radius: 4px;
+//     padding: 5px;
+//     font-weight: bold;
+
+//     .mat-select-value-text {
+//       color: #ffa600;
+//     }
+
+//     .mat-select-arrow {
+//       color: #ffa600;
+//     }
+
+//     &:hover {
+//       background-color: rgba(255, 166, 0, 0.1);
+//     }
+//   }
+
+//   .mat-paginator-icon {
+//     color: #ffa600;
+//   }
+
+//   .mat-paginator-page-size-label {
+//     color: #ffa600;
+//     font-weight: bold;
+//     margin-right: 8px;
+//   }
+// }
