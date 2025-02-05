@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
 import { NaveDetalheComponent } from './nave-detalhe/nave-detalhe.component';
+import { CustomMatPaginatorIntl } from './custom-translation';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { NaveDetalheComponent } from './nave-detalhe/nave-detalhe.component';
     MatCardModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
