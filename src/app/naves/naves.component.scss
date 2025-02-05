@@ -203,7 +203,7 @@ table.mat-elevation-z8 {
 
   .nave-details-desc {
     border-left: 4px solid #ffa600;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.95);
     padding: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-top-right-radius: 4px;
@@ -300,6 +300,7 @@ table.mat-elevation-z8 {
   @media (max-width: 1016px) {
     flex-direction: column;
     align-items: stretch;  
+    background-color: rgba(0, 0, 0, 0.95);
 
     .nave-details-desc,
     .nave-details-image,
