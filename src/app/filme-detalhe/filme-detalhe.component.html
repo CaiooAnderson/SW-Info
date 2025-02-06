@@ -21,7 +21,7 @@
             <div class="planeta-grid">
               <ng-container *ngFor="let planetUrl of filme.planets">
                 <div class="planeta-item">
-                  <button *ngIf="!displayedPlanets[planetUrl]" (click)="showPlanetImage(planetUrl)">
+                  <button *ngIf="!displayedPlanets[planetUrl]" (click)="showPlanetImage(planetUrl)" [disabled]="loadingPlanets[planetUrl]">
                     {{ planetNames[planetUrl] || 'Carregando...' }}
                   </button>
                   <img

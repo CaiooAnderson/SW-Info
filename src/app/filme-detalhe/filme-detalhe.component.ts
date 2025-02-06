@@ -21,8 +21,8 @@ export class FilmeDetalheComponent implements OnInit {
   filme: Filme | null = null;
   isLoading = true;
   isDescriptionVisible = false;
-  allPlanetsDisplayed = false;
   planetNames: { [url: string]: string } = {};
+  loadingPlanets: { [url: string]: boolean } = {};
   displayedPlanets: { [url: string]: boolean } = {};
   planetImages: { [planetName: string]: string } = {
     'Alderaan': '../../assets/planets/Alderaan.svg',
@@ -47,6 +47,7 @@ export class FilmeDetalheComponent implements OnInit {
     'Yavin IV': '../../assets/planets/Yavin_IV.svg',
     'Unknown': '../../assets/planets/Unknown.svg'
   };
+  allPlanetsDisplayed = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -78,17 +79,27 @@ export class FilmeDetalheComponent implements OnInit {
 
     if (this.filme) {
       const backgrounds: { [key: string]: string } = {
-        'The Phantom Menace': '../../assets/films/The_Phantom_Menace.svg',
-        'Attack of the Clones': '../../assets/films/Attack_of_the_Clones.svg',
-        'Revenge of the Sith': '../../assets/films/Revenge_of_the_Sith.svg',
-        'A New Hope': '../../assets/films/A_New_Hope.svg',
-        'The Empire Strikes Back': '../../assets/films/The_Empire_Strikes_Back.svg',
-        'Return of the Jedi': '../../assets/films/Return_of_the_Jedi.svg',
+        'The Phantom Menace': this.getImageByRatio('The_Phantom_Menace'),
+        'Attack of the Clones': this.getImageByRatio('Attack_of_the_Clones'),
+        'Revenge of the Sith': this.getImageByRatio('Revenge_of_the_Sith'),
+        'A New Hope': this.getImageByRatio('A_New_Hope'),
+        'The Empire Strikes Back': this.getImageByRatio('The_Empire_Strikes_Back'),
+        'Return of the Jedi': this.getImageByRatio('Return_of_the_Jedi'),
       };
       return backgrounds[this.filme.title] || '../../assets/starwars.jpg';
     }
 
     return '../../assets/starwars.jpg';
+  }
+
+  getImageByRatio(title: string): string {
+    const ratio = window.innerWidth / window.innerHeight;
+
+    if (ratio >= 1.77) {
+      return `../../assets/films/${title}-16-9.svg`;
+    } else {
+      return `../../assets/films/${title}-4-3.svg`;
+    }
   }
 
   showDescription(): void {
@@ -100,6 +111,7 @@ export class FilmeDetalheComponent implements OnInit {
   loadPlanetNames(): void {
     if (this.filme?.planets) {
       this.filme.planets.forEach(url => {
+        this.loadingPlanets[url] = true;
         this.fetchPlanetName(url);
       });
     }
@@ -118,16 +130,20 @@ export class FilmeDetalheComponent implements OnInit {
     this.filmesService.getPlaneta(url).subscribe({
       next: (planet) => {
         this.planetNames[url] = planet.name;
+        this.loadingPlanets[url] = false;
       },
       error: (err) => {
         console.error(`Erro ao carregar o planeta ${url}`, err);
+        this.loadingPlanets[url] = false;
       }
     });
   }
 
   showPlanetImage(url: string): void {
-    this.displayedPlanets[url] = true;
-    this.checkAllPlanetsDisplayed();
+    if (!this.loadingPlanets[url]) {
+      this.displayedPlanets[url] = true;
+      this.checkAllPlanetsDisplayed();
+    }
   }
 
   checkAllPlanetsDisplayed(): void {
