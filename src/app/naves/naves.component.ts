@@ -121,7 +121,6 @@ export class NavesComponent implements OnInit {
         this.naveDetailsContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 0);
-    
     console.log('Nave selecionada:', this.selectedNave);
   }
 
