@@ -21,7 +21,7 @@
     <td mat-cell *matCellDef="let filme" (click)="navegarParaDetalhes(filme)" 
         (mouseenter)="highlightRow(filme)" 
         (mouseleave)="removeHighlight()">
-          {{ filme.title }}
+          {{ getTituloTraduzido(filme.title) }}
     </td>
   </ng-container>
 
@@ -29,7 +29,7 @@
     <th mat-header-cell *matHeaderCellDef> Data de Lançamento </th>
     <td mat-cell *matCellDef="let filme" (click)="navegarParaDetalhes(filme)"
         [ngClass]="{'tr-hover': highlightedFilm === filme}" >
-          {{ filme.release_date }}
+        {{ filme.release_date | date: 'dd/MM/yyyy' }}
     </td>
   </ng-container>
 
