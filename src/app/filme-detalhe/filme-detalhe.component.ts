@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FilmesService } from '../services/filmes.service';
 import { Filme } from '../services/filmes.interface';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { TranslationService } from '../services/translation.service';
 
 @Component({
   selector: 'app-filme-detalhe',
@@ -51,12 +52,14 @@ export class FilmeDetalheComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private filmesService: FilmesService
+    private filmesService: FilmesService,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit(): void {
     const episodeId = this.route.snapshot.paramMap.get('id');
     if (episodeId) {
+      const episodio = `episodio-${episodeId}`;
       this.filmesService.getFilmes().subscribe({
         next: (data) => {
           this.filme = data.results.find(filme => filme.episode_id.toString() === episodeId) || null;
@@ -154,5 +157,12 @@ export class FilmeDetalheComponent implements OnInit {
 
   voltarPagina(): void {
     window.history.back();
+  }
+
+  getDescricaoTraduzida(): string {
+    if (this.filme) {
+      return this.translationService.traduzirDescricao(`episodio-${this.filme.episode_id}`);
+    }
+    return '';
   }
 }

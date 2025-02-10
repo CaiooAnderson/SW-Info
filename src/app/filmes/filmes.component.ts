@@ -3,6 +3,7 @@ import { trigger, style, transition, animate } from "@angular/animations";
 import { Router } from '@angular/router';
 import { FilmesService } from '../services/filmes.service';
 import { Filme } from '../services/filmes.interface';
+import { TranslationService } from '../services/translation.service';
 
 @Component({
   selector: 'app-filmes',
@@ -34,7 +35,11 @@ export class FilmesComponent implements OnInit {
   searchTitle = '';
   noResults = false;
 
-  constructor(private filmesService: FilmesService, private router: Router) {}
+  constructor(
+    private filmesService: FilmesService,
+    private router: Router,
+    private translationService: TranslationService
+  ) {}
 
   ngOnInit(): void {
     this.loadFilmes();
@@ -74,5 +79,9 @@ export class FilmesComponent implements OnInit {
   reloadFilmes(): void {
     this.searchTitle = '';
     this.loadFilmes();
+  }
+
+  getTituloTraduzido(titulo: string): string {
+    return this.translationService.traduzirTitulo(titulo);
   }
 }
