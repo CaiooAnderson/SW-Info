@@ -9,5 +9,5 @@
 
 ## Futuramente Pensar:
 ```
-1. Novos componentes (People, Vehicles, Species).
+1. Novos componentes (People, Vehicles, Species)
 ```
