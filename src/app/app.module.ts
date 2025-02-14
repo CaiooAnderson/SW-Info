@@ -6,6 +6,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +22,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
 import { NaveDetalheComponent } from './nave-detalhe/nave-detalhe.component';
 import { CustomMatPaginatorIntl } from './custom-translation';
+import { InicioService } from './services/inicio.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list'
 
 @NgModule({
   declarations: [
@@ -37,10 +46,19 @@ import { CustomMatPaginatorIntl } from './custom-translation';
     FormsModule,
     MatPaginatorModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatListModule
   ],
   providers: [
-    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
+    InicioService
   ],
   bootstrap: [AppComponent]
 })
