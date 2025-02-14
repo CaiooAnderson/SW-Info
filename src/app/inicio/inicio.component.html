@@ -57,7 +57,6 @@
           </mat-menu>
         </mat-menu>
       </div>
-      
     </div>
 
     <div class="personagens-bloco" [ngClass]="{'single-character': !rightCharacter}">
@@ -65,17 +64,21 @@
     <div class="personagem personagem-left">
       <img [src]="leftCharacter.img" [alt]="leftCharacter.name" class="personagem-img"/>
       <p class="personagem-nome">{{ leftCharacter.name }}</p>
-      <p class="personagem-titulo">{{ leftCharacter.species || 'Desconhecido' }}</p>
+      <p class="personagem-titulo">{{ leftCharacter.title || 'Sem Título' }}</p>
     </div>
 
     <mat-card *ngIf="leftCharacter" class="info-card left">
       <mat-card-header>
+        <div class="card-header-content">
         <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
-        <mat-card-subtitle>{{ leftCharacter.species || 'Desconhecido' }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ leftCharacter.title || 'Sem Título' }}</mat-card-subtitle>
+        </div>
       </mat-card-header>
       <mat-card-content>
+        <div class="card-description">
         <p><strong>Gênero:</strong> {{ leftCharacter.gender || 'n/a' }}</p>
         <p><strong>Espécie:</strong> {{ leftCharacter.species || 'Desconhecido' }}</p>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -84,17 +87,21 @@
     <div class="personagem personagem-right">
       <img [src]="rightCharacter.img" [alt]="rightCharacter.name" class="personagem-img"/>
       <p class="personagem-nome">{{ rightCharacter.name }}</p>
-      <p class="personagem-titulo">{{ rightCharacter.species || 'Desconhecido' }}</p>
+      <p class="personagem-titulo">{{ rightCharacter.title || 'Sem Título' }}</p>
     </div>
 
     <mat-card *ngIf="rightCharacter" class="info-card right">
       <mat-card-header>
+        <div class="card-header-content">
         <mat-card-title>{{ rightCharacter.name }}</mat-card-title>
-        <mat-card-subtitle>{{ rightCharacter.species || 'Desconhecido' }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ rightCharacter.title || 'Sem Título' }}</mat-card-subtitle>
+        </div>
       </mat-card-header>
       <mat-card-content>
+        <div class="card-description">
         <p><strong>Gênero:</strong> {{ rightCharacter.gender || 'n/a' }}</p>
         <p><strong>Espécie:</strong> {{ rightCharacter.species || 'Desconhecido' }}</p>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

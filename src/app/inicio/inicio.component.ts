@@ -4,7 +4,7 @@ import { Personagem } from '../services/inicio.interface';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
@@ -56,32 +56,43 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.loadSpecies();
+    const startTime = Date.now();
   
-    this.inicioService.buscarTodosOsPersonagens().subscribe((personagens) => {
-      this.allCharacters = personagens;
-      this.filteredCharacters = personagens;
+    forkJoin({
+      personagens: this.inicioService.buscarTodosOsPersonagens(),
+      especies: this.inicioService.buscarTodasEspecies()
+    }).subscribe({
+      next: ({ personagens, especies }) => {
+        this.allCharacters = personagens;
+        this.filteredCharacters = personagens;
+        this.speciesList = especies;
   
-      if (this.filteredCharacters.length > 1) {
-        this.startCharacterSwap(this.filteredCharacters);
-      } else if (this.filteredCharacters.length === 1) {
-        this.updateCharacters(this.filteredCharacters);
-        this.stopAutoChangeCharacters();
+        console.log(`Tempo total de carregamento: ${Date.now() - startTime}ms`);
+  
+        if (this.filteredCharacters.length > 1) {
+          this.startCharacterSwap(this.filteredCharacters);
+        } else if (this.filteredCharacters.length === 1) {
+          this.updateCharacters(this.filteredCharacters);
+          this.stopAutoChangeCharacters();
+        }
+  
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error("Erro ao carregar dados:", error);
+        this.isLoading = false;
       }
-
-      this.isLoading = false;
     });
   
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(300), 
-        switchMap((value) => this.filterCharacters(value))
+        debounceTime(300),
+        switchMap(value => this.filterCharacters(value))
       )
-      .subscribe((filteredNames) => {
+      .subscribe(filteredNames => {
         this.filteredOptions = filteredNames;
       });
-  }
-  
+  }  
 
   ngOnDestroy() {
     if (this.intervalId) {
@@ -196,16 +207,14 @@ applySpeciesFilter() {
   }
 }
 
-loadSpecies() {
+loadSpecies(): void {
   this.inicioService.buscarTodasEspecies().subscribe({
-      next: (species) => {
-          this.speciesList = species;
-          this.selectedSpeciesMap = {}; 
-          species.forEach(s => this.selectedSpeciesMap[s.name.toLowerCase()] = false);
-      },
-      error: (error) => {
-          console.error('Erro ao carregar todas as espécies:', error);
-      }
+    next: (species) => {
+      this.speciesList = species;
+    },
+    error: (err) => {
+      console.error("Erro ao carregar as espécies:", err);
+    }
   });
 }
 
