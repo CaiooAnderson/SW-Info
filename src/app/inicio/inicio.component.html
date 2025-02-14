@@ -1,1 +1,103 @@
-<app-header title="SW-Info"></app-header>
+<app-header title="Início"></app-header>
+
+<div class="home-section">
+  <div class="content">
+    <h1 class="titulo">SW-info</h1>
+    <p class="subtitulo">Um breve resumo sobre o universo Star Wars!</p>
+    <button mat-icon-button class="scroll-button" (click)="scrollToNextSection()">
+      <mat-icon>arrow_downward</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="container" id="personagens-e-citacoes">
+    <h2>Personagens</h2>
+    <div *ngIf="isLoading" class="loading">
+      <div class="loading-personagens">
+        <img src="../../assets/loading/personagens_loading.gif" alt="Carregando Personagens..." />
+      </div>
+    </div>
+    <div *ngIf="!isLoading">
+    <div class="filters">
+      <div class="filter-options">
+        <div class="search-container">
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Digite o nome do personagem" class="search-input"/>
+          <button (click)="onSearch()" class="search-button">Buscar</button>
+        </div>
+        
+        <button mat-icon-button [matMenuTriggerFor]="filterMenu" class="filter-icon">
+          <mat-icon>tune</mat-icon>
+        </button>
+      
+        <mat-menu #filterMenu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="genderMenu">Gênero</button>
+          <mat-menu #genderMenu="matMenu" class="custom-menu gender-menu">
+            <div class="filter-column">
+              <mat-checkbox *ngFor="let gender of ['male', 'female', 'n/a']"
+                            class="custom-checkbox"
+                            [(ngModel)]="selectedGender[gender]"
+                            (change)="applyFilter()"
+                            (click)="$event.stopPropagation()">
+                {{ gender }}
+              </mat-checkbox>
+            </div>
+          </mat-menu>
+        
+          <button mat-menu-item [matMenuTriggerFor]="speciesMenu">Espécies</button>
+          <mat-menu #speciesMenu="matMenu" class="custom-menu species-menu">
+            <div class="filter-column">
+              <mat-checkbox *ngFor="let species of speciesList"
+                            class="custom-checkbox"
+                            [(ngModel)]="selectedSpecies[species.name]"
+                            (change)="applyFilter()"
+                            (click)="$event.stopPropagation()">
+                {{ species.name }}
+              </mat-checkbox>
+            </div>
+          </mat-menu>
+        </mat-menu>
+      </div>
+      
+    </div>
+
+    <div class="personagens-bloco" [ngClass]="{'single-character': !rightCharacter}">
+  <div class="personagem-container left" *ngIf="leftCharacter" [@fadeAnimationWithDelay]="!useNoDelayAnimation">
+    <div class="personagem personagem-left">
+      <img [src]="leftCharacter.img" [alt]="leftCharacter.name" class="personagem-img"/>
+      <p class="personagem-nome">{{ leftCharacter.name }}</p>
+      <p class="personagem-titulo">{{ leftCharacter.species || 'Desconhecido' }}</p>
+    </div>
+
+    <mat-card *ngIf="leftCharacter" class="info-card left">
+      <mat-card-header>
+        <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
+        <mat-card-subtitle>{{ leftCharacter.species || 'Desconhecido' }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Gênero:</strong> {{ leftCharacter.gender || 'n/a' }}</p>
+        <p><strong>Espécie:</strong> {{ leftCharacter.species || 'Desconhecido' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="personagem-container right" *ngIf="rightCharacter" [@fadeAnimationNoDelay]="useNoDelayAnimation">
+    <div class="personagem personagem-right">
+      <img [src]="rightCharacter.img" [alt]="rightCharacter.name" class="personagem-img"/>
+      <p class="personagem-nome">{{ rightCharacter.name }}</p>
+      <p class="personagem-titulo">{{ rightCharacter.species || 'Desconhecido' }}</p>
+    </div>
+
+    <mat-card *ngIf="rightCharacter" class="info-card right">
+      <mat-card-header>
+        <mat-card-title>{{ rightCharacter.name }}</mat-card-title>
+        <mat-card-subtitle>{{ rightCharacter.species || 'Desconhecido' }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Gênero:</strong> {{ rightCharacter.gender || 'n/a' }}</p>
+        <p><strong>Espécie:</strong> {{ rightCharacter.species || 'Desconhecido' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  </div>
+</div>
+</div>

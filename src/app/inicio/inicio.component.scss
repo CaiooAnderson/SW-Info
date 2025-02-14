@@ -1,0 +1,326 @@
+.home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/nave-detalhe_wallpaper.gif'); 
+    height: calc(100vh - 132px);
+    color: white;
+    text-align: center;
+    position: relative;
+  
+    .content {
+      max-width: 80%;
+      text-align: center;
+  
+      h1 {
+        font-family: 'Star Jedi', sans-serif;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        transform: rotateX(-45deg);
+        position: relative;
+        color: #ffcc00;
+        letter-spacing: 12px;
+      }
+  
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        transform: rotateX(-45deg);
+        position: relative;
+        color: #ffcc00;
+        letter-spacing: 4px;
+      }
+    }
+  
+    .scroll-button {
+      position: absolute;
+      border-radius: 50%;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: transparent;
+      border: none;
+      color: #ffcc00;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+
+      .mat-icon {
+        transition: transform 0.4s ease;
+      }
+  
+      &:hover .mat-icon {
+        color: #fff;
+        filter: drop-shadow(0px 2px 2px #ffffff80);
+        transform: translateY(-10px);
+        transition-duration: 0.8s;
+      }
+
+      &:active .mat-icon {
+        transform: translateY(10px);
+        transition-duration: 0.25s;
+      }
+    }
+}
+
+#personagens-e-citacoes {
+    background-color: #1c1c1c;
+    height: 100vh;
+    color: #ffd700;
+    margin-bottom: 30px;
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    
+    .filters {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+
+        .filter-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 30px;
+
+        .filter-icon {
+            background-color: #ffd700;
+            color: #000;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            
+            &:hover {
+            background-color: #b3b3b3;
+            }
+        }
+
+        .search-container {
+          display: flex;
+          background-color: transparent;
+          flex-direction: row;
+          gap: 10px;
+        }
+    
+        .search-input {
+            padding: 10px 15px;
+            border-radius: 25px;
+            width: 300px;
+            font-style: italic;
+            font-size: 1rem;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            
+            &:focus {
+            outline: 2px solid #ffd700;
+            }
+        }
+    
+        .search-button {
+            background-color: #ffd700;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            
+            &:hover {
+            background-color: #b3b3b3;
+            }
+        }
+      }
+    }
+
+    .personagens-bloco {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: calc(100vh - 220px);
+        background-color: #1c1c1c;
+        padding: 20px;
+        border-radius: 10px;
+
+        &.single-character {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .personagem-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          gap: 2rem;
+        }
+        
+        .personagem {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            width: 15%;
+
+          .personagem-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+            z-index: 1;
+            margin-bottom: 10px;
+          }
+      
+          .personagem-nome {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+          }
+      
+          .personagem-titulo {
+            font-size: 1rem;
+            color: #ffd700;
+          }
+        }
+
+        .info-card {
+          flex: 1;
+          max-width: 350px;
+          background-color: #404040;
+          border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          justify-content: left;
+          align-items: flex-start;
+        }
+
+        mat-card-title {
+          color: #fff;
+        }
+
+        mat-card-content p strong {
+          color: #fff;
+        }
+    }
+}
+
+.loading-personagens {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 75px);
+  background: linear-gradient(357deg, rgba(80, 80, 80, 1) 10%, rgba(50, 50, 50, 1) 50%, rgba(34, 34, 34, 1) 90%);
+}
+
+.loading-personagens img {
+  height: calc(90vh - 300px);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 240px;
+
+  @media (max-width: 430px) {
+    width: 100vw;
+    height: calc(90vh - 100px);
+  }
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  border: 1px solid #f0e68c !important;
+  border-radius: 6px !important;
+  box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.4) !important;
+  padding: 0px !important;
+}
+
+::ng-deep .mat-mdc-menu-content {
+  background-color: transparent !important;
+  padding: 0 !important;
+  color: #fff !important;
+}
+
+::ng-deep .gender-menu .filter-column,
+::ng-deep .species-menu .filter-column {
+  padding: 0px !important;
+  background-color: #333 !important;
+  border-radius: 4px !important;
+}
+
+::ng-deep .gender-menu,
+::ng-deep .species-menu {
+  padding: 0 !important;
+  background-color: #333 !important;
+}
+
+::ng-deep .filter-column mat-checkbox {
+  margin-bottom: 0 !important;
+}
+
+::ng-deep .filter-column mat-checkbox:hover {
+  background-color: #1c1c1c !important;
+}
+
+::ng-deep .filter-column .mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: #000 !important;
+  border-color: #ffd700 !important;
+}
+
+::ng-deep .filter-column .mat-mdc-checkbox-checked {
+  background-color: #111;
+}
+
+::ng-deep .filter-column .mat-mdc-checkbox-checked .mdc-checkbox__background svg {
+  color: #fff !important;
+}
+
+::ng-deep .species-menu .filter-column {
+  height: 40vh !important;
+  overflow-y: auto !important;
+}
+
+::ng-deep .gender-menu {
+  overflow-y: hidden !important;
+}
+
+::ng-deep .gender-menu .filter-column {
+  height: max-content !important;
+}
+
+::ng-deep .custom-checkbox {
+  display: block !important;
+  margin-bottom: 4px !important;
+  color: #ffcc00 !important;
+  font-weight: bold !important;
+}
+
+::ng-deep .custom-checkbox .mdc-form-field {
+  color: #ffcc00 !important;
+}
+
+::ng-deep .mat-mdc-menu-item {
+  color: #f0e68c !important;
+  font-weight: bold !important;
+  transition: background-color 0.3s ease-in-out !important;
+}
+
+::ng-deep .mat-mdc-menu-item:hover {
+  background-color: #1c1c1c !important;
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .personagens-bloco {
+    flex-direction: column;  
+    align-items: center;
+  }
+
+  .personagem-container {
+    flex-direction: column;  
+    align-items: center;
+  }
+}
