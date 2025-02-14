@@ -1,11 +1,11 @@
 export interface Filme {
-    title: string;
-    episode_id: number;
-    opening_crawl: string;
-    director: string;
-    producer: string;
-    release_date: string;
-    planets: string[];
+  title: string;
+  episode_id: number;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  planets: string[];
   }
   
   export interface RespostaAPI<T> {
