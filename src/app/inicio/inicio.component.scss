@@ -7,6 +7,7 @@
     color: white;
     text-align: center;
     position: relative;
+    border-bottom: 1px solid #ffd700;
   
     .content {
       max-width: 80%;
@@ -14,22 +15,35 @@
   
       h1 {
         font-family: 'Star Jedi', sans-serif;
-        font-size: 3rem;
+        font-size: clamp(2rem, 6vw, 4rem);
         font-weight: bold;
         margin-bottom: 1rem;
         transform: rotateX(-45deg);
         position: relative;
         color: #ffcc00;
-        letter-spacing: 12px;
+        letter-spacing: 8px;
       }
   
       p {
-        font-size: 1.5rem;
+        font-size: clamp(1rem, 4vw, 1.8rem);
         margin-bottom: 2rem;
         transform: rotateX(-45deg);
         position: relative;
         color: #ffcc00;
         letter-spacing: 4px;
+      }
+    }
+
+    @media (max-width: 430px) {  
+      h1 {
+        letter-spacing: 4px;
+        transform: rotateX('-15deg');
+      }
+  
+      p {
+        letter-spacing: 2px;
+        transform: rotateX('-10deg');
+        line-height: 1.4;
       }
     }
   
@@ -292,6 +306,10 @@
 
 ::ng-deep .filter-column mat-checkbox {
   margin-bottom: 0 !important;
+  padding-right: 8px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 ::ng-deep .filter-column mat-checkbox:hover {
@@ -429,7 +447,7 @@
   }
 
   .search-container {
-    width: 100%;
+    width: 90%;
     justify-content: center;
   }
 
@@ -446,5 +464,10 @@
   .filter-icon {
     padding: 6px;
     font-size: 1.2rem;
+  }
+
+  .info-card {
+    width: 80% !important;
+    padding: 0 !important;
   }
 }
