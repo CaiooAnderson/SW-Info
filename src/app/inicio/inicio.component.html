@@ -17,18 +17,18 @@
         <img src="../../assets/loading/personagens_loading.gif" alt="Carregando Personagens..." />
       </div>
     </div>
-    <div *ngIf="!isLoading">
+  <div *ngIf="!isLoading">
     <div class="filters">
       <div class="filter-options">
         <div class="search-container">
           <input type="text" [(ngModel)]="searchTerm" placeholder="Digite o nome do personagem" class="search-input"/>
           <button (click)="onSearch()" class="search-button">Buscar</button>
         </div>
-        
+      
         <button mat-icon-button [matMenuTriggerFor]="filterMenu" class="filter-icon">
           <mat-icon>tune</mat-icon>
         </button>
-      
+    
         <mat-menu #filterMenu="matMenu">
           <button mat-menu-item [matMenuTriggerFor]="genderMenu">Gênero</button>
           <mat-menu #genderMenu="matMenu" class="custom-menu gender-menu">
@@ -60,51 +60,51 @@
     </div>
 
     <div class="personagens-bloco" [ngClass]="{'single-character': !rightCharacter}">
-  <div class="personagem-container left" *ngIf="leftCharacter" [@fadeAnimation]>
-    <div class="personagem personagem-left">
-      <img [src]="leftCharacter.img" [alt]="leftCharacter.name" class="personagem-img"/>
-      <p class="personagem-nome">{{ leftCharacter.name }}</p>
-      <p class="personagem-titulo">{{ leftCharacter.title || 'Sem Título' }}</p>
+      <div class="personagem-container left" *ngIf="leftCharacter" [@fadeAnimation]>
+        <div class="personagem personagem-left">
+          <img [src]="leftCharacter.img" [alt]="leftCharacter.name" class="personagem-img"/>
+          <p class="personagem-nome">{{ leftCharacter.name }}</p>
+          <p class="personagem-titulo">{{ leftCharacter.title || 'Sem Título' }}</p>
+        </div>
+
+        <mat-card *ngIf="leftCharacter" class="info-card left">
+          <mat-card-header>
+            <div class="card-header-content">
+              <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
+              <mat-card-subtitle>{{ leftCharacter.title || 'Sem Título' }}</mat-card-subtitle>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-description">
+              <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(leftCharacter.gender || 'n/a') }}</p>
+              <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(leftCharacter.species || 'Desconhecido') }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="personagem-container right" *ngIf="rightCharacter" [@fadeAnimation]>
+        <div class="personagem personagem-right">
+          <img [src]="rightCharacter.img" [alt]="rightCharacter.name" class="personagem-img"/>
+          <p class="personagem-nome">{{ rightCharacter.name }}</p>
+          <p class="personagem-titulo">{{ rightCharacter.title || 'Sem Título' }}</p>
+        </div>
+
+        <mat-card *ngIf="rightCharacter" class="info-card right">
+          <mat-card-header>
+            <div class="card-header-content">
+            <mat-card-title>{{ rightCharacter.name }}</mat-card-title>
+            <mat-card-subtitle>{{ rightCharacter.title || 'Sem Título' }}</mat-card-subtitle>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-description">
+            <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(rightCharacter.gender || 'n/a') }}</p>
+            <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(rightCharacter.species || 'Desconhecido') }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
-
-    <mat-card *ngIf="leftCharacter" class="info-card left">
-      <mat-card-header>
-        <div class="card-header-content">
-          <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
-          <mat-card-subtitle>{{ leftCharacter.title || 'Sem Título' }}</mat-card-subtitle>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="card-description">
-          <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(leftCharacter.gender || 'n/a') }}</p>
-          <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(leftCharacter.species || 'Desconhecido') }}</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
   </div>
-
-  <div class="personagem-container right" *ngIf="rightCharacter" [@fadeAnimation]>
-    <div class="personagem personagem-right">
-      <img [src]="rightCharacter.img" [alt]="rightCharacter.name" class="personagem-img"/>
-      <p class="personagem-nome">{{ rightCharacter.name }}</p>
-      <p class="personagem-titulo">{{ rightCharacter.title || 'Sem Título' }}</p>
-    </div>
-
-    <mat-card *ngIf="rightCharacter" class="info-card right">
-      <mat-card-header>
-        <div class="card-header-content">
-        <mat-card-title>{{ rightCharacter.name }}</mat-card-title>
-        <mat-card-subtitle>{{ rightCharacter.title || 'Sem Título' }}</mat-card-subtitle>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="card-description">
-        <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(rightCharacter.gender || 'n/a') }}</p>
-        <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(rightCharacter.species || 'Desconhecido') }}</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  </div>
-</div>
 </div>
