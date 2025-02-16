@@ -33,12 +33,12 @@
           <button mat-menu-item [matMenuTriggerFor]="genderMenu">Gênero</button>
           <mat-menu #genderMenu="matMenu" class="custom-menu gender-menu">
             <div class="filter-column">
-              <mat-checkbox *ngFor="let gender of ['male', 'female', 'n/a']"
+              <mat-checkbox *ngFor="let gender of ['male', 'female', 'hermaphrodite', 'none', 'n/a']"
                             class="custom-checkbox"
                             [(ngModel)]="selectedGender[gender]"
                             (change)="applyFilter()"
                             (click)="$event.stopPropagation()">
-                {{ gender }}
+                {{ translationService.traduzirGenero(gender) }}
               </mat-checkbox>
             </div>
           </mat-menu>
@@ -51,7 +51,7 @@
                             [(ngModel)]="selectedSpecies[species.name]"
                             (change)="applyFilter()"
                             (click)="$event.stopPropagation()">
-                {{ species.name }}
+                {{ translationService.traduzirEspecie(species.name) }}
               </mat-checkbox>
             </div>
           </mat-menu>
@@ -76,8 +76,8 @@
       </mat-card-header>
       <mat-card-content>
         <div class="card-description">
-        <p><strong>Gênero:</strong> {{ leftCharacter.gender || 'n/a' }}</p>
-        <p><strong>Espécie:</strong> {{ leftCharacter.species || 'Desconhecido' }}</p>
+        <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(leftCharacter.gender || 'n/a') }}</p>
+        <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(leftCharacter.species || 'Desconhecido') }}</p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -99,8 +99,8 @@
       </mat-card-header>
       <mat-card-content>
         <div class="card-description">
-        <p><strong>Gênero:</strong> {{ rightCharacter.gender || 'n/a' }}</p>
-        <p><strong>Espécie:</strong> {{ rightCharacter.species || 'Desconhecido' }}</p>
+        <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(rightCharacter.gender || 'n/a') }}</p>
+        <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(rightCharacter.species || 'Desconhecido') }}</p>
         </div>
       </mat-card-content>
     </mat-card>
