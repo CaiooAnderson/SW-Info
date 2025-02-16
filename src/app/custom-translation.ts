@@ -24,6 +24,41 @@ export const FILMES_DESCRICOES_TRADUZIDOS: { [key: string]: string } = {
   'episodio-6': 'Luke Skywalker retornou ao seu planeta natal, Tatooine, na tentativa de resgatar seu amigo Han Solo das garras do vil gangster Jabba the Hutt. Mal sabe Luke que o IMPÉRIO GALÁCTICO iniciou secretamente a construção de uma nova estação espacial blindada ainda mais poderosa do que a primeira temida Estrela da Morte. Quando concluída, essa arma definitiva significará a condenação certa para o pequeno grupo de rebeldes que lutam para restaurar a liberdade na galáxia...',
 };
 
+export const GENEROS_TRADUZIDOS: { [key: string]: string } = {
+  'male': 'Masculino',
+  'female': 'Feminino',
+  'hermaphrodite': 'Hermafrodita',
+  'none': 'Nenhum',
+  'n/a': 'Desconhecido'
+};
+
+export const ESPECIES_TRADUZIDAS: { [key: string]: string } = {
+  'Human': 'Humano',
+  'Droid': 'Dróide',
+  'Wookie': 'Wookiee',
+  'Twi\'lek': 'Twi’lek',
+  'Rodian': 'Rodiano',
+  'Hutt': 'Hutt',
+  'Yoda\'s species': 'Espécies de Yoda',
+  'Trandoshan': 'Trandoshano',
+  'Mon Calamari': 'Mon Calamariano',
+  'Ewok': 'Ewok',
+  'Sullustan': 'Sullustano',
+  'Neimodian': 'Neimodiano',
+  'Toydarian': 'Toydariano',
+  'Vulptereen': 'Vulptereeno',
+  'Cerean': 'Cereano',
+  'Nautolan': 'Nautolano',
+  'Tholothian': 'Tolothiano',
+  'Quermian': 'Quermiano',
+  'Chagrian': 'Chagriano',
+  'Geonosian': 'Geonosiano',
+  'Mirialan': 'Mirialano',
+  'Kaminoan': 'Kaminoano',
+  'Skakoan': 'Skakoano',
+  'Pau\'an': 'Pau’ano'
+};
+
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {
   override itemsPerPageLabel = 'Itens por página:';
