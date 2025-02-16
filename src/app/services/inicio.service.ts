@@ -105,30 +105,102 @@ export class InicioService {
   }
 
   private getPersonagemImage(name: string): { img: string, title: string } {
-    const images: { [key: string]: { img: string, title: string } } = {
-      'Luke Skywalker': { 
-        img: '../../assets/characters/Luke_Skywalker.svg',
-        title: 'Jedi'
-      },
-      'Darth Vader': {
-        img: '../../assets/characters/Darth_Vader.svg',
-        title: 'Sith'
-      },
-      'Leia Organa': {
-        img: '../../assets/characters/Leia_Organa.svg',
-        title: 'Rebelde'
-      },
-      'Obi-Wan Kenobi': {
-        img: '../../assets/characters/Obi_Wan_Kenobi.svg',
-        title: 'Jedi'
-      },
-      'Yoda': {
-        img: '../../assets/characters/Yoda.svg',
-        title: 'Jedi'
-      },
+    const roles: { [key: string]: string } = {
+      'luke_skywalker': 'Jedi',
+      'c-3po': 'Droide',
+      'r2-d2': 'Droide',
+      'darth_vader': 'Sith',
+      'leia_organa': 'Rebelde',
+      'owen_lars': 'Fazendeiro',
+      'beru_whitesun_lars': 'Fazendeira',
+      'r5-d4': 'Droide',
+      'biggs_darklighter': 'Piloto Rebelde',
+      'obi-wan_kenobi': 'Jedi',
+      'anakin_skywalker': 'Jedi/Sith',
+      'wilhuff_tarkin': 'Governador Imperial',
+      'chewbacca': 'Wookiee',
+      'han_solo': 'Contrabandista',
+      'greedo': 'Caçador de Recompensas',
+      'jabba_desilijic_tiure': 'Senhor do Crime',
+      'wedge_antilles': 'Piloto Rebelde',
+      'jek_tono_porkins': 'Piloto Rebelde',
+      'yoda': 'Jedi',
+      'palpatine': 'Imperador Sith',
+      'boba_fett': 'Caçador de Recompensas',
+      'ig-88': 'Caçador de Recompensas',
+      'bossk': 'Caçador de Recompensas',
+      'lando_calrissian': 'Líder Rebelde',
+      'lobot': 'Assistente de Lando',
+      'ackbar': 'Almirante Rebelde',
+      'mon_mothma': 'Líder Rebelde',
+      'arvel_crynyd': 'Piloto Rebelde',
+      'wicket_systri_warrick': 'Ewok',
+      'nien_nunb': 'Copiloto',
+      'qui-gon_jinn': 'Jedi',
+      'nute_gunray': 'Vice-rei da Federação',
+      'finis_valorum': 'Chanceler Supremo',
+      'padme_amidala': 'Rainha/Senadora',
+      'jar_jar_binks': 'Gungan',
+      'roos_tarpals': 'General Gungan',
+      'rugor_nass': 'Líder Gungan',
+      'ric_olie': 'Piloto',
+      'watto': 'Comerciante',
+      'sebulba': 'Piloto de Podracer',
+      'quarsh_panaka': 'Capitão da Guarda',
+      'shmi_skywalker': 'Mãe de Anakin',
+      'darth_maul': 'Sith',
+      'bib_fortuna': 'Assistente de Jabba',
+      'ayla_secura': 'Jedi',
+      'ratts_tyerel': 'Piloto de Podracer',
+      'dud_bolt': 'Piloto de Podracer',
+      'gasgano': 'Piloto de Podracer',
+      'ben_quadinaros': 'Piloto de Podracer',
+      'mace_windu': 'Jedi',
+      'ki-adi-mundi': 'Jedi',
+      'kit_fisto': 'Jedi',
+      'eeth_koth': 'Jedi',
+      'adi_gallia': 'Jedi',
+      'saesee_tiin': 'Jedi',
+      'yarael_poof': 'Jedi',
+      'plo_koon': 'Jedi',
+      'mas_amedda': 'Político',
+      'gregar_typho': 'Capitão da Guarda',
+      'corde': 'Serva da Rainha',
+      'cliegg_lars': 'Fazendeiro',
+      'poggle_the_lesser': 'Líder Geonosiano',
+      'luminara_unduli': 'Jedi',
+      'barriss_offee': 'Jedi',
+      'dorme': 'Serva de Padmé',
+      'dooku': 'Sith',
+      'bail_prestor_organa': 'Senador',
+      'jango_fett': 'Caçador de Recompensas',
+      'zam_wesell': 'Caçadora de Recompensas',
+      'dexter_jettster': 'Dono de Lanchonete',
+      'lama_su': 'Primeiro-Ministro Kaminoano',
+      'taun_we': 'Assistente Kaminoana',
+      'jocasta_nu': 'Bibliotecária Jedi',
+      'r4-p17': 'Droide',
+      'wat_tambor': 'Líder Separatista',
+      'san_hill': 'Líder Separatista',
+      'shaak_ti': 'Jedi',
+      'grievous': 'General Separatista',
+      'tarfful': 'Líder Wookiee',
+      'raymus_antilles': 'Capitão da Tantive IV'
     };
-    return images[name] || { img: '../../assets/characters/Unknown_Character.svg', title: 'Desconhecido' };
-  }
+
+    const removeAccents = (str: string) =>
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  
+    const formattedName = removeAccents(name)
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "_");
+
+    const imagePath = `../../assets/characters/${formattedName}.svg`;
+
+    return { img: imagePath, title: roles[formattedName] || 'Desconhecido' };
+}
+  
 
   private getUniqueRandomIndexes(count: number, min: number, max: number): number[] {
     const indexes = new Set<number>();
