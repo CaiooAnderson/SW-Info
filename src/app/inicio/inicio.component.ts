@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { TranslationService } from '../services/translation.service';
 
 @Component({
   selector: 'app-inicio',
@@ -52,7 +53,7 @@ export class InicioComponent implements OnInit, OnDestroy {
   searchControl: FormControl = new FormControl();
   selectedGender: { [key: string]: boolean } = { male: false, female: false, 'n/a': false };
 
-  constructor(private inicioService: InicioService) {}
+  constructor(private inicioService: InicioService, public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
