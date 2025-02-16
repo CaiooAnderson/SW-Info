@@ -60,7 +60,7 @@
     </div>
 
     <div class="personagens-bloco" [ngClass]="{'single-character': !rightCharacter}">
-  <div class="personagem-container left" *ngIf="leftCharacter" [@fadeAnimationWithDelay]="!useNoDelayAnimation">
+  <div class="personagem-container left" *ngIf="leftCharacter" [@fadeAnimation]>
     <div class="personagem personagem-left">
       <img [src]="leftCharacter.img" [alt]="leftCharacter.name" class="personagem-img"/>
       <p class="personagem-nome">{{ leftCharacter.name }}</p>
@@ -70,20 +70,20 @@
     <mat-card *ngIf="leftCharacter" class="info-card left">
       <mat-card-header>
         <div class="card-header-content">
-        <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
-        <mat-card-subtitle>{{ leftCharacter.title || 'Sem Título' }}</mat-card-subtitle>
+          <mat-card-title>{{ leftCharacter.name }}</mat-card-title>
+          <mat-card-subtitle>{{ leftCharacter.title || 'Sem Título' }}</mat-card-subtitle>
         </div>
       </mat-card-header>
       <mat-card-content>
         <div class="card-description">
-        <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(leftCharacter.gender || 'n/a') }}</p>
-        <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(leftCharacter.species || 'Desconhecido') }}</p>
+          <p><strong>Gênero:</strong> {{ translationService.traduzirGenero(leftCharacter.gender || 'n/a') }}</p>
+          <p><strong>Espécie:</strong> {{ translationService.traduzirEspecie(leftCharacter.species || 'Desconhecido') }}</p>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="personagem-container right" *ngIf="rightCharacter" [@fadeAnimationNoDelay]="useNoDelayAnimation">
+  <div class="personagem-container right" *ngIf="rightCharacter" [@fadeAnimation]>
     <div class="personagem personagem-right">
       <img [src]="rightCharacter.img" [alt]="rightCharacter.name" class="personagem-img"/>
       <p class="personagem-nome">{{ rightCharacter.name }}</p>
