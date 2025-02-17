@@ -1,0 +1,64 @@
+.error-container {
+    display: flex;
+    background-image: url('../../assets/nave-detalhe_wallpaper.gif');
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.erro-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.25);
+    padding: 1.5rem;
+    border-radius: 16px;
+    gap: 1.5rem;
+    animation: backgroundBright 3s infinite linear;
+
+    h1, p {
+        filter: brightness(1.5);
+        filter: drop-shadow(2px 2px 2px #00000080);
+        line-height: 1.25;
+    }
+
+    h1 {
+        margin: 1rem 0 0;
+        font-size: 5rem;
+        color: #f00;
+    }
+
+    p {
+        margin: 0 0 1rem;
+        font-size: 2rem;
+        color: #a8a8a8;
+    }
+}
+
+@keyframes backgroundBright {
+  0%, 100% {
+      filter: brightness(0.5);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+}
+  
+  .back-home {
+    display: flex;
+    margin-top: 20px;
+    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
+    background-color: #FFD700;
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+  }
+  
+  .back-home:hover {
+    background-color: #FF8C00;
+  }
