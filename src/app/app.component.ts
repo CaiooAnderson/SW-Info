@@ -14,10 +14,18 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    this.updateNavbarVisibility();
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.showNavbar = !event.url.includes('filmes/') && !event.url.includes('nave-detalhe/');
+      console.log('URL Atual:', event.url);
+      this.updateNavbarVisibility();
     });
+  }
+
+  private updateNavbarVisibility() {
+    const currentUrl = this.router.url;
+    this.showNavbar = !(currentUrl.includes('pagina-nao-encontrada') || currentUrl.includes('filmes/') || currentUrl.includes('nave-detalhe/'));
+    console.log('showNavbar:', this.showNavbar);
   }
 }

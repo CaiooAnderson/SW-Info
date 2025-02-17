@@ -11,25 +11,18 @@ import { TranslationService } from '../services/translation.service';
   styleUrls: ['./filmes.component.scss'],
   animations: [
     trigger('filterTransition', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('200ms ease-out', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('150ms ease-in', style({ opacity: 0 })),
-      ]),
+      transition(':enter', [style({ opacity: 0 }), animate('200ms ease-out', style({ opacity: 1 }))]),
+      transition(':leave', [animate('150ms ease-in', style({ opacity: 0 }))])
     ]),
     trigger('fadeInHeader', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-20px)' }),
-        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
-      ]),
-    ]),
-  ],
+      transition(':enter', [style({ opacity: 0, transform: 'translateY(-20px)' }), animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))])
+    ])
+  ]
 })
 export class FilmesComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'release_date', 'director'];
+  displayedColumns = ['title', 'release_date', 'director'];
   filmes: Filme[] = [];
+  filmesTraduzidos: Filme[] = [];
   highlightedFilm: Filme | null = null;
   isLoading = false;
   searchTitle = '';
@@ -45,18 +38,17 @@ export class FilmesComponent implements OnInit {
     this.loadFilmes();
   }
 
-  loadFilmes(search?: string): void {
+  loadFilmes(): void {
     this.isLoading = true;
-    this.filmesService.getFilmes(search).subscribe({
-      next: (data) => {
-        this.filmes = data.results.sort((a, b) => a.episode_id - b.episode_id);
-        this.isLoading = false;
-        this.noResults = this.filmes.length === 0;
+    this.filmesService.getFilmes().subscribe({
+      next: ({ results }) => {
+        this.filmesTraduzidos = results
+          .map(filme => ({ ...filme, title: this.translationService.traduzirTitulo(filme.title) }))
+          .sort((a, b) => a.episode_id - b.episode_id);
+        this.filmes = [...this.filmesTraduzidos];
+        this.noResults = !this.filmes.length;
       },
-      error: (err) => {
-        console.error('Erro ao carregar os filmes:', err);
-        this.isLoading = false;
-      },
+      complete: () => this.isLoading = false
     });
   }
 
@@ -73,7 +65,15 @@ export class FilmesComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.loadFilmes(this.searchTitle.trim());
+    this.isLoading = true;
+    const searchTerm = this.searchTitle.trim().toLowerCase();  
+    setTimeout(() => {
+      this.filmes = this.filmesTraduzidos
+        .filter(filme => this.translationService.traduzirTitulo(filme.title).toLowerCase().includes(searchTerm))
+        .sort((a, b) => a.episode_id - b.episode_id);
+      this.noResults = !this.filmes.length;
+      this.isLoading = false;
+    }, 1000);
   }
 
   reloadFilmes(): void {

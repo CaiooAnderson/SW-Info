@@ -12,7 +12,7 @@ export const FILMES_TRADUZIDOS: { [key: string]: string } = {
 
 export const FILMES_DESCRICOES_TRADUZIDOS: { [key: string]: string } = {
   'episodio-1': 'A turbulência tomou conta da República Galáctica. A tributação das rotas comerciais para sistemas estelares distantes está em disputa. Na tentativa de resolver a questão com um bloqueio de naves de batalha mortais, a gananciosa Federação do Comércio interrompeu todo o transporte para o pequeno planeta Naboo. Enquanto o Congresso da República debate sem fim essa alarmante cadeia de eventos, o Chanceler Supremo secretamente despachou dois Cavaleiros Jedi, os guardiões da paz e da justiça na galáxia, para resolver o conflito....',
-  
+
   'episodio-2': 'Há agitação no Senado Galáctico. Milhares de sistemas solares declararam suas intenções de deixar a República. Esse movimento separatista, sob a liderança do misterioso Conde Dooku, dificultou para o número limitado de Cavaleiros Jedi manterem a paz e a ordem na galáxia. A Senadora Amidala, a ex-Rainha de Naboo, está retornando ao Senado Galáctico para votar sobre a questão crítica da criação de um EXÉRCITO DA REPÚBLICA para ajudar os Jedi sobrecarregados....',
   
   'episodio-3': 'Guerra! A República está desmoronando sob os ataques do implacável Lorde Sith, Conde Dooku. Há heróis de ambos os lados. O mal está por toda parte. Em um movimento surpreendente, o malévolo líder droide, General Grievous, invadiu a capital da República e sequestrou o Chanceler Palpatine, líder do Senado Galáctico. Enquanto o Exército Droide Separatista tenta fugir da capital sitiada com seu valioso refém, dois Cavaleiros Jedi lideram uma missão desesperada para resgatar o Chanceler cativo....',
@@ -25,38 +25,17 @@ export const FILMES_DESCRICOES_TRADUZIDOS: { [key: string]: string } = {
 };
 
 export const GENEROS_TRADUZIDOS: { [key: string]: string } = {
-  'male': 'Masculino',
-  'female': 'Feminino',
-  'hermaphrodite': 'Hermafrodita',
-  'none': 'Nenhum',
-  'n/a': 'Desconhecido'
+  'male': 'Masculino', 'female': 'Feminino', 'hermaphrodite': 'Hermafrodita',
+  'none': 'Nenhum', 'n/a': 'Desconhecido'
 };
 
 export const ESPECIES_TRADUZIDAS: { [key: string]: string } = {
-  'Human': 'Humano',
-  'Droid': 'Dróide',
-  'Wookie': 'Wookiee',
-  'Twi\'lek': 'Twi’lek',
-  'Rodian': 'Rodiano',
-  'Hutt': 'Hutt',
-  'Yoda\'s species': 'Espécies de Yoda',
-  'Trandoshan': 'Trandoshano',
-  'Mon Calamari': 'Mon Calamariano',
-  'Ewok': 'Ewok',
-  'Sullustan': 'Sullustano',
-  'Neimodian': 'Neimodiano',
-  'Toydarian': 'Toydariano',
-  'Vulptereen': 'Vulptereeno',
-  'Cerean': 'Cereano',
-  'Nautolan': 'Nautolano',
-  'Tholothian': 'Tolothiano',
-  'Quermian': 'Quermiano',
-  'Chagrian': 'Chagriano',
-  'Geonosian': 'Geonosiano',
-  'Mirialan': 'Mirialano',
-  'Kaminoan': 'Kaminoano',
-  'Skakoan': 'Skakoano',
-  'Pau\'an': 'Pau’ano'
+  'Human': 'Humano', 'Droid': 'Dróide', 'Wookie': 'Wookiee', 'Twi\'lek': 'Twi’lek',
+  'Rodian': 'Rodiano', 'Hutt': 'Hutt', 'Yoda\'s species': 'Espécies de Yoda', 'Trandoshan': 'Trandoshano',
+  'Mon Calamari': 'Mon Calamariano', 'Ewok': 'Ewok', 'Sullustan': 'Sullustano', 'Neimodian': 'Neimodiano',
+  'Toydarian': 'Toydariano', 'Vulptereen': 'Vulptereeno', 'Cerean': 'Cereano', 'Nautolan': 'Nautolano',
+  'Tholothian': 'Tolothiano', 'Quermian': 'Quermiano', 'Chagrian': 'Chagriano', 'Geonosian': 'Geonosiano',
+  'Mirialan': 'Mirialano', 'Kaminoan': 'Kaminoano', 'Skakoan': 'Skakoano', 'Pau\'an': 'Pau’ano'
 };
 
 @Injectable()

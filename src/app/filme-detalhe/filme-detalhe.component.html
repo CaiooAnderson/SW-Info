@@ -1,4 +1,14 @@
-<div class="filme-detalhe-container" *ngIf="filme; else loading">
+<div *ngIf="erro404; else loading">
+  <app-pagina-nao-encontrada></app-pagina-nao-encontrada>
+</div>
+
+<ng-template #loading>
+  <div class="loading" *ngIf="isLoading">
+    <img src="../../assets/loading/vader_loading.gif" alt="Carregando..." />
+  </div>
+</ng-template>
+
+<div class="filme-detalhe-container" *ngIf="filme && !erro404; else loading">
   <button mat-raised-button color="warn" class="btn-voltar" (click)="voltarPagina()">Voltar</button>
 
   <div class="imagem-container" [ngStyle]="{ 'background-image': 'url(' + getBackgroundImage() + ')' }"></div>
@@ -39,9 +49,3 @@
     </mat-card>
   </div>
 </div>
-
-<ng-template #loading>
-  <div class="loading">
-    <img src="../../assets/loading/vader_loading.gif" alt="Carregando..." />
-  </div>
-</ng-template>

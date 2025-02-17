@@ -1,4 +1,4 @@
-<div class="nave-detalhe-container" *ngIf="!isLoading">
+<div class="nave-detalhe-container" *ngIf="!isLoading && !erro404">
   <div class="back-button-container">
     <button (click)="voltar()">Voltar</button>
   </div>
@@ -45,6 +45,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="erro404" class="erro-404">
+  <app-pagina-nao-encontrada></app-pagina-nao-encontrada>
 </div>
 
 <div *ngIf="isLoading" class="loading-nave-detalhes">

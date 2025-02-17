@@ -25,7 +25,9 @@ import { CustomMatPaginatorIntl } from './custom-translation';
 import { InicioService } from './services/inicio.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MatListModule } from '@angular/material/list'
     HeaderComponent,
     FilmeDetalheComponent,
     NaveDetalheComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     MatTableModule,
@@ -54,7 +57,8 @@ import { MatListModule } from '@angular/material/list'
     ReactiveFormsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },

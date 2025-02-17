@@ -13,6 +13,7 @@ export class NaveDetalheComponent implements OnInit {
   films: string[] = [];
   pilots: string[] = [];
   isLoading = true;
+  erro404 = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,51 +23,39 @@ export class NaveDetalheComponent implements OnInit {
 
   ngOnInit() {
     const name = this.route.snapshot.paramMap.get('name');
-    if (name) {
-      this.buscarDetalhesNave(name);
-    }
+    if (name) this.buscarDetalhesNave(name);
   }
 
   buscarDetalhesNave(name: string) {
     this.navesService.getTodasNaves().subscribe((naves) => {
       this.nave = naves.find(n => n.name === name) || null;
+      if (!this.nave) return this.handleError(name);
+      this.isLoading = false;
 
-      if (this.nave) {
-        this.isLoading = false;
-        this.navesService
-          .getFilmesETripulantes(this.nave.films)
-          .subscribe((filmes) => {
-            this.films = filmes.map((film: any) => film.title);
-          });
+      const requests = [...this.nave.films, ...this.nave.pilots];
+      if (!requests.length) return;
 
-        this.navesService
-          .getFilmesETripulantes(this.nave.pilots)
-          .subscribe((pilots) => {
-            this.pilots = pilots.map((pilot: any) => pilot.name);
-          });
-      } else {
-        console.error(`Nave com nome ${name} não encontrada.`);
-        this.isLoading = false
-      }
+      this.navesService.getFilmesETripulantes(requests).subscribe((data) => {
+        this.films = data.filter(d => d.title).map(f => f.title);
+        this.pilots = data.filter(d => d.name).map(p => p.name);
+      });
     });
   }
 
+  handleError(name: string) {
+    console.error(`Nave com nome ${name} não encontrada.`);
+    this.isLoading = false;
+    this.erro404 = true;
+  }
+
   getFilmBackgroundImage(film: string): string {
-    const filmBackgrounds: { [key: string]: string } = {
-      'The Phantom Menace': '../../assets/films/The_Phantom_Menace-16-9.svg',
-      'Attack of the Clones': '../../assets/films/Attack_of_the_Clones-16-9.svg',
-      'Revenge of the Sith': '../../assets/films/Revenge_of_the_Sith-16-9.svg',
-      'A New Hope': '../../assets/films/A_New_Hope-16-9.svg',
-      'The Empire Strikes Back': '../../assets/films/The_Empire_Strikes_Back-16-9.svg',
-      'Return of the Jedi': '../../assets/films/Return_of_the_Jedi-16-9.svg',
-    };
-  
-    return filmBackgrounds[film] || '../../assets/starwars.jpg';
+    const formattedTitle = film.replace(/ /g, '_');
+    return `../../assets/films/${formattedTitle}-16-9.svg`;
   }
 
   hasPilots(): boolean {
     return this.pilots.length > 0;
-  }  
+  }
 
   voltar() {
     this.router.navigate(['/naves']);
