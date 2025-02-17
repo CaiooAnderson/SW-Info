@@ -7,6 +7,7 @@ import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { forkJoin, Observable } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { TranslationService } from '../services/translation.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-inicio',
@@ -40,7 +41,11 @@ export class InicioComponent implements OnInit, OnDestroy {
   searchControl = new FormControl();
   private intervalId: any = null;
 
-  constructor(private inicioService: InicioService, public translationService: TranslationService) {}
+  constructor(
+    private inicioService: InicioService,
+    public translationService: TranslationService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     forkJoin({
@@ -79,7 +84,15 @@ export class InicioComponent implements OnInit, OnDestroy {
       (!selectedGenders.length || selectedGenders.includes(c.gender.toLowerCase())) &&
       (!selectedSpeciesList.length || selectedSpeciesList.some(s => s.toLowerCase().trim() === c.species?.toLowerCase().trim()))
     );
-    this.filteredCharacters.length ? this.startCharacterSwap() : this.clearFilters();
+
+    if (this.filteredCharacters.length) {
+      this.startCharacterSwap();
+    } else {
+      this.showNoResultsSnackbar();
+      setTimeout(() => {
+        this.clearFilters();
+      }, 300);
+    }
   }
 
   filterCharacters(value: string = ''): Observable<string[]> {
@@ -91,7 +104,8 @@ export class InicioComponent implements OnInit, OnDestroy {
   clearFilters() {
     this.selectedGender = { male: false, female: false, 'n/a': false };
     this.selectedSpecies = {};
-    this.loadRandomCharacters();
+    this.filteredCharacters = [...this.allCharacters];
+    this.loadRandomCharacters(true);
     this.startCharacterSwap();
   }
 
@@ -103,8 +117,10 @@ export class InicioComponent implements OnInit, OnDestroy {
     }, 300);
   }
 
-  loadRandomCharacters() {
-    this.updateCharacters(this.filteredCharacters.length ? this.getRandomIndices(this.filteredCharacters.length).map(i => this.filteredCharacters[i]) : []);
+  loadRandomCharacters(isRandom: boolean = false) {
+    const charactersToDisplay = isRandom ? this.allCharacters : this.filteredCharacters;
+  
+    this.updateCharacters(charactersToDisplay.length ? this.getRandomIndices(charactersToDisplay.length).map(i => charactersToDisplay[i]) : []);
   }
 
   getRandomIndices(length: number): number[] {
@@ -130,5 +146,11 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   scrollToNextSection() {
     document.querySelector('.container')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  private showNoResultsSnackbar() {
+    this.snackBar.open('Não há personagens com esses filtros', 'X', {
+    duration: undefined,
+    });
   }
 }
