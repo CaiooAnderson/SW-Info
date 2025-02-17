@@ -6,11 +6,11 @@ export interface Filme {
   producer: string;
   release_date: string;
   planets: string[];
-  }
+}
   
-  export interface RespostaAPI<T> {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: T[];
-  }
+export interface RespostaAPI<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
+}
