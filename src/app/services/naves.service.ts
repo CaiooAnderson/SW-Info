@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, forkJoin } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { Nave } from './naves.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -11,10 +11,10 @@ export class NavesService {
   constructor(private http: HttpClient) {}
 
   getTodasNaves(): Observable<Nave[]> {
-    const fetchPage = (url: string): Observable<Nave[]> =>
+    const fetchPage = (url: string, naves: Nave[] = []): Observable<Nave[]> =>
       this.http.get<any>(url).pipe(
-        switchMap(response =>
-          response.next ? fetchPage(response.next) : of([...response.results])
+        switchMap(response => 
+          response.next ? fetchPage(response.next, [...naves, ...response.results]) : of([...naves, ...response.results])
         )
       );
 
