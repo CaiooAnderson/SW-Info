@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      console.log('URL Atual:', event.url);
       this.updateNavbarVisibility();
     });
   }
@@ -26,6 +25,5 @@ export class AppComponent implements OnInit {
   private updateNavbarVisibility() {
     const currentUrl = this.router.url;
     this.showNavbar = !(currentUrl.includes('pagina-nao-encontrada') || currentUrl.includes('filmes/') || currentUrl.includes('nave-detalhe/'));
-    console.log('showNavbar:', this.showNavbar);
   }
 }

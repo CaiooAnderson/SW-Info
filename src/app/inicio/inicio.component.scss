@@ -26,7 +26,7 @@
       }
   
       p {
-        font-size: clamp(1rem, 4vw, 1.8rem);
+        font-size: clamp(1.25rem, 4.25vw, 2rem);
         margin-bottom: 2rem;
         letter-spacing: 4px;
       }
@@ -215,16 +215,13 @@
   justify-content: center;
   height: calc(100vh - 75px);
   background: linear-gradient(357deg, rgba(80, 80, 80, 1) 10%, rgba(50, 50, 50, 1) 50%, rgba(34, 34, 34, 1) 90%);
-  
   img {
-    height: calc(90vh - 300px);
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 240px;
-    
-    @media (max-width: 430px) {
-      width: 100vw;
-      height: calc(90vh - 100px);
-    }
+    height: calc(90vh - 250px);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;  
+  }
+  @media (max-width: 430px) { height: calc(100vh - 4.5rem); 
+    img { width: 100vw; height: calc(80vh - 7.5rem); }
   }
 }
 
@@ -317,12 +314,14 @@
 
   .mat-mdc-snack-bar-label { color: #fff !important; }
 
-  .mdc-button__label { color: #f00 !important; font-size: 1.25rem !important }
+  .mdc-snackbar__action {
+    .mdc-button__label { color: #f00 !important; font-size: 1.25rem !important }
+  }
 
   .mdc-button__ripple { 
-    background-color: rgba(57, 57, 57, 0.75) !important; 
+    background-color: rgba(41, 41, 41, 0.75) !important; 
     &::before {
-      background-color: rgba(255, 255, 255, 0.75) !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
     }
   }
 

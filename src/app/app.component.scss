@@ -5,6 +5,7 @@
     background-color: #333;
     padding: 1rem;
     gap: 2rem;
+    height: 5%;
     border-bottom: 2px solid #444;
   
     .nav-link {
@@ -53,31 +54,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: #292929;
   padding: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 
-  .mat-mdc-paginator-container {
-    justify-content: center;
-    gap: 8px;
+  .mat-mdc-paginator-container { justify-content: center; gap: 8px; }
+
+  .mat-mdc-paginator-page-size { margin: 0; }
+
+  .mat-mdc-paginator-range-label { color: #ffa600; margin: 0 15px;
   }
 
-  .mat-mdc-paginator-page-size {
-    margin: 0;
-  }
+  .mat-mdc-raised-button.mat-warn { --mdc-protected-button-container-color: #fff; }
 
-  .mat-mdc-paginator-range-label {
-    color: #ffa600;
-    margin: 0 15px;
-  }
-
+  .mat-warn { --mat-option-selected-state-label-text-color: #fff; }
+  
+  .mat-mdc-paginator-icon { fill: #ffa600; }
+  
   .mat-mdc-form-field.mat-accent {
     --mdc-outlined-text-field-focus-outline-color: #ffa600;
     --mat-select-focused-arrow-color: #ffa600de;
-  }
-
-  .mat-mdc-paginator-icon {
-    fill: #ffa600;
   }
 }

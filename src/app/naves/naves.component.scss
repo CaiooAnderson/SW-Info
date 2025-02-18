@@ -248,16 +248,13 @@ table.mat-elevation-z8 {
   display: flex;
   justify-content: center;
   background: linear-gradient(357deg, rgba(180,58,58,1) 0%, rgba(253,119,29,1) 50%, rgba(252,176,69,1) 100%);;
-  height: calc(100vh - 135px);
-
+  height: calc(100vh - 137px);
   img {
     height: calc(90vh - 300px);
-    border-bottom-left-radius: 240px;
+    border-bottom-left-radius: 15rem;
     border-bottom-right-radius: 24px;
-    
-    @media (max-width: 430px) {
-      width: 100vw;
-      height: calc(90vh - 100px);
-    }
+  }
+  @media (max-width: 430px) { height: calc(100vh - 8rem); 
+    img { width: 100vw; height: calc(80vh - 7.5rem); border-bottom-right-radius: 0; }
   }
 }

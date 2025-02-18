@@ -43,7 +43,6 @@ export class NaveDetalheComponent implements OnInit {
   }
 
   handleError(name: string) {
-    console.error(`Nave com nome ${name} não encontrada.`);
     this.isLoading = false;
     this.erro404 = true;
   }

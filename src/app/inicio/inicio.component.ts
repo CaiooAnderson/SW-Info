@@ -150,7 +150,7 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   private showNoResultsSnackbar() {
     this.snackBar.open('Não há personagens com esses filtros', 'X', {
-    duration: undefined,
+    "duration": 10000,
     });
   }
 }
